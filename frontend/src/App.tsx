@@ -8,7 +8,7 @@ function App() {
 
   useEffect(() => {
     const getBooks = async () => {
-      const response = await fetch('http://localhost:4000/books')
+      const response = await fetch('http://localhost:4001/books')
       const data = await response.json()
       setBooks(data)
     }
