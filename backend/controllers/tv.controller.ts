@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { fetchFromTMDB } from "../services/tmdb.service.ts";
 import axios from "axios";
 
-export async function getTrendingTv (req : Request, res : Response) : Promise<void> {
+export async function getTrendingTv(req: Request, res: Response): Promise<void> {
   try {
     const data = await fetchFromTMDB(
       "https://api.themoviedb.org/3/trending/tv/day?language=es-ES"
@@ -10,7 +10,7 @@ export async function getTrendingTv (req : Request, res : Response) : Promise<vo
     const randomMovie =
       data.results[Math.floor(Math.random() * data.results?.length)];
 
-    res.json({ sucess: true, content: randomMovie });
+    res.json({ success: true, content: randomMovie });
   } catch (error) {
     res
       .status(500)
@@ -18,7 +18,7 @@ export async function getTrendingTv (req : Request, res : Response) : Promise<vo
   }
 }
 
-export async function getTvTrailers(req : Request, res : Response) : Promise<void> {
+export async function getTvTrailers(req: Request, res: Response): Promise<void> {
   const { id } = req.params;
   try {
     const data = await fetchFromTMDB(
@@ -27,16 +27,16 @@ export async function getTvTrailers(req : Request, res : Response) : Promise<voi
     res.json({ success: true, trailers: data.results });
   } catch (error) {
     if (axios.isAxiosError(error) && error.response?.status === 404) {
-        res.status(404).send(null);
-        return;
-      } else
+      res.status(404).send(null);
+      return;
+    } else
       res
         .status(500)
-        .json({ success: false, essage: "Internal server error" + error });
+        .json({ success: false, message: "Internal server error" + error });
   }
 }
 
-export async function getTvDetails(req : Request, res : Response) : Promise<void> {
+export async function getTvDetails(req: Request, res: Response): Promise<void> {
   const { id } = req.params;
   try {
     const data = await fetchFromTMDB(
@@ -45,15 +45,15 @@ export async function getTvDetails(req : Request, res : Response) : Promise<void
     res.status(200).json({ success: true, content: data });
   } catch (error) {
     if (axios.isAxiosError(error) && error.response?.status === 404) {
-        res.status(404).send(null);
-        return;
-      }
+      res.status(404).send(null);
+      return;
+    }
 
     res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 }
 
-export async function getSimilarTvs(req : Request, res : Response) : Promise<void> {
+export async function getSimilarTvs(req: Request, res: Response): Promise<void> {
   const { id } = req.params;
   try {
     const data = await fetchFromTMDB(
@@ -65,7 +65,7 @@ export async function getSimilarTvs(req : Request, res : Response) : Promise<voi
   }
 }
 
-export async function getTvsByCategory(req : Request, res : Response) : Promise<void> {
+export async function getTvsByCategory(req: Request, res: Response): Promise<void> {
   const { category } = req.params;
   try {
     const data = await fetchFromTMDB(
@@ -78,17 +78,17 @@ export async function getTvsByCategory(req : Request, res : Response) : Promise<
 }
 
 export async function getTvReviews(req: Request, res: Response): Promise<void> {
-    const { id } = req.params;
-    try {
-      const data = await fetchFromTMDB(
-        `https://api.themoviedb.org/3/tv/${id}/reviews?language=en-US`
-      );
-      res.status(200).json({ success: true, content: data });
-    } catch (error) {
-      if (axios.isAxiosError(error) && error.response?.status === 404) {
-        res.status(404).send(null);
-        return;
-      }
-      res.status(500).json({ success: false, message: "Internal Server Error" });
+  const { id } = req.params;
+  try {
+    const data = await fetchFromTMDB(
+      `https://api.themoviedb.org/3/tv/${id}/reviews?language=en-US`
+    );
+    res.status(200).json({ success: true, content: data });
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.response?.status === 404) {
+      res.status(404).send(null);
+      return;
     }
+    res.status(500).json({ success: false, message: "Internal Server Error" });
   }
+}
