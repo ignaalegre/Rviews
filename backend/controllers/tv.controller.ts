@@ -14,7 +14,7 @@ export async function getTrendingTv(req: Request, res: Response): Promise<void> 
   } catch (error) {
     res
       .status(500)
-      .json({ sucess: false, message: "Internal  server Error" + error });
+      .json({ success: false, message: "Internal  server Error" + error });
   }
 }
 
