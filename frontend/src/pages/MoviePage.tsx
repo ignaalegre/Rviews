@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import axios from 'axios'
 
 import { useParams } from 'react-router-dom'
@@ -56,6 +56,8 @@ const MoviePage = () => {
         <p className="text-lg md:text-xl mb-6 ">{reviews.results[0].author}</p>
         <p className="text-lg md:text-xl mb-6 ">{reviews.results[0].content}</p>
       </div>
+
+
     </div>
   )
 }

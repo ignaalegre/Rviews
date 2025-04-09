@@ -1,9 +1,7 @@
-import { useState } from 'react'
-
-type Option = 'peliculas' | 'series'
+import { useContentType } from '../context/ContentTypeContext.tsx'
 
 export default function Header() {
-  const [selected, setSelected] = useState<Option>('peliculas')
+  const { selected, setSelected } = useContentType()
 
   return (
     <header className="bg-gray-900 text-white px-6 py-4 shadow-md">
@@ -12,22 +10,19 @@ export default function Header() {
         <ul className="flex space-x-6">
           <li>
             <button
-              onClick={() => setSelected('peliculas')}
-              className={`px-3 py-1 rounded ${
-                selected === 'peliculas'
-                  ? 'bg-green-400 text-white'
-                  : 'text-gray-300 hover:text-white'
-              }`}
+              onClick={() => setSelected('movie')}
+              className={`px-3 py-1 rounded ${selected === 'movie'
+                ? 'bg-green-400 text-white'
+                : 'text-gray-300 hover:text-white'
+                }`}
             >
               Películas
             </button>
           </li>
           <li>
             <button
-              onClick={() => setSelected('series')}
-              className={`px-3 py-1 rounded ${
-                selected === 'series' ? 'bg-green-400 text-white' : 'text-gray-300 hover:text-white'
-              }`}
+              onClick={() => setSelected('tv')}
+              className={`px-3 py-1 rounded ${selected === 'tv' ? 'bg-green-400 text-white' : 'text-gray-300 hover:text-white'}`}
             >
               Series
             </button>
