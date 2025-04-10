@@ -3,7 +3,7 @@ import { searchMovie, searchTv } from "../controllers/search.controller"
 
 const router = Router()
 
-router.get('/movie/:title', searchMovie)
-router.get('/tv/:title', searchTv)
+router.get('/movie/:title/:page?', searchMovie)
+router.get('/tv/:title/:page?', searchTv)
 
 export default router

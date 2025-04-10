@@ -25,7 +25,7 @@ export default function Header() {
               onClick={() => setContentType('tv')}
               className={`px-3 py-1 rounded ${
                 contentType === 'tv' ? 'bg-green-400 text-white' : 'text-gray-300 hover:text-white'
-              }transition-100 hover:scale-105 hover:shadow-2xl`}
+              }`}
             >
               Series
             </button>

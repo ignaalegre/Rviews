@@ -4,9 +4,10 @@ import axios from "axios";
 
 export const searchMovie = async (req: Request, res: Response): Promise<void> => {
     const { title } = req.params;
+    const page = req.params.page ? parseInt(req.params.page, 10) : 1;
     try {
         const data = await fetchFromTMDB(
-            `https://api.themoviedb.org/3/search/movie?query=${title}`
+            `https://api.themoviedb.org/3/search/movie?query=${title}&page=${page}`
         );
         res.status(200).json({ success: true, content: data });
     } catch (error) {
@@ -22,9 +23,11 @@ export const searchMovie = async (req: Request, res: Response): Promise<void> =>
 
 export const searchTv = async (req: Request, res: Response): Promise<void> => {
     const { title } = req.params;
+    const page = req.params.page ? parseInt(req.params.page, 10) : 1;
+
     try {
         const data = await fetchFromTMDB(
-            `https://api.themoviedb.org/3/search/tv?query=${title}`
+            `https://api.themoviedb.org/3/search/tv?query=${title}&page=${page}`
         );
         res.status(200).json({ success: true, content: data });
     } catch (error) {
