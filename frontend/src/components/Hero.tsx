@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import axios from 'axios'
 import { useContentStore } from '../store/content'
 import useGetTrendingContent from '../hooks/useGetTrending'
+import SearchBox from './SearchBox'
 
 const Hero = () => {
   const { contentType } = useContentStore()
@@ -36,13 +37,17 @@ const Hero = () => {
         alt="Fondo de película"
         className="object-cover w-full h-full absolute z-0"
       />
-
+      
+      
       {/* Gradiente encima de la imagen */}
       <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black z-10" />
-
       {/* Contenido */}
       <div className="flex items-center justify-center min-h-screen">
         <div className="relative z-40 flex flex-col md:flex-row items-center justify-center h-full px-8 text-white w-full gap-12 text-center md:text-left">
+          {/* Caja de búsqueda dentro del flujo normal */}
+          <div className="w-full max-w-xl mb-8">
+            <SearchBox />
+          </div>
           {/* Título y descripción */}
           <div className="md:w-1/2 mb-8 md:mb-0 ">
             <h1 className="text-4xl md:text-6xl font-bold mb-8 p-4 hover:font-extrabold transition duration-300 hover:scale-[1.02]  ">

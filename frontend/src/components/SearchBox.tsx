@@ -1,6 +1,7 @@
 import { useContentStore } from '../store/content'
 import React from "react"
 import { useNavigate } from "react-router-dom"
+import { Search } from 'lucide-react'
 
 const SearchBox = () => {
     const [searchTerm, setSearchTerm] = React.useState('')
@@ -12,17 +13,21 @@ const SearchBox = () => {
     }
 
     return (
-        <div>
-            <input
-                type="text"
-                placeholder="Buscar una película o serie..."
-                value={searchTerm}
-                onChange={e => setSearchTerm(e.target.value)}
-                className="w-full px-4 py-2 rounded-md bg-white/20 placeholder-white text-white focus:outline-none focus:ring-2 focus:ring-white"
-            />
+        <div className="w-full max-w-xl mx-auto mt-10">
+            <div className="flex items-center bg-white/10 backdrop-blur-md shadow-md rounded-2xl px-4 py-3 ring-1 ring-white/20 focus-within:ring-2 focus-within:ring-green-400">
+                <Search className="text-white opacity-70 mr-2" />
+                <input
+                    type="text"
+                    placeholder="Buscá una peli o serie..."
+                    value={searchTerm}
+                    onChange={e => setSearchTerm(e.target.value)}
+                    onKeyDown={e => e.key === 'Enter' && handleSubmit()}
+                    className="flex-1 bg-transparent text-white placeholder-white/50 focus:outline-none"
+                />
+            </div>
             <button
                 onClick={handleSubmit}
-                className="mt-4 px-6 py-2 bg-green-500 text-white rounded-md"
+                className="mt-4 w-full py-2.5 bg-gradient-to-r from-green-500 to-lime-400 text-white font-semibold rounded-xl shadow-lg hover:brightness-110 transition-all duration-200"
             >
                 Buscar
             </button>

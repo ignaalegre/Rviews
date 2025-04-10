@@ -6,6 +6,7 @@ import Header from './components/Header'
 import HomePage from './pages/HomePage'
 import SearchPage from './pages/SearchPage'
 import NotFound from './pages/NotFound'
+import TvPage from './pages/TvPage'
 function App() {
   return (
     <>
@@ -15,6 +16,7 @@ function App() {
         <Route path="/search/movie/:query" element={<SearchPage />} />
         <Route path="/search/tv/:query" element={<SearchPage />} />
         <Route path="/movie/:id" element={<MoviePage />} />
+        <Route path="/tv/:id" element={<TvPage />} />
         <Route path="*" element={<NotFound />} /> {/* página de error */}
       </Routes>
       <Footer />

@@ -14,7 +14,6 @@ const MoviePage = () => {
     try {
       const res = await axios.get(`http://localhost:4001/movie/${id}/details`)
       setContent(res.data.content)
-      console.log(res.data.content)
     } catch (error) {
       console.log(error)
     }
@@ -23,7 +22,6 @@ const MoviePage = () => {
     try {
       const res = await axios.get(`http://localhost:4001/movie/${id}/reviews`)
       setReviews(res.data.content)
-      console.log(res.data.content)
     } catch (error) {
       console.log(error)
     }
