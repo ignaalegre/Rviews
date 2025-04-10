@@ -3,3 +3,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Oculta la barra de scroll en todos los navegadores */
+.scrollbar-hide {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer y Edge */
+  
+    /* Chrome, Safari y Opera */
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }

@@ -45,15 +45,24 @@ const Hero = () => {
         <div className="relative z-40 flex flex-col md:flex-row items-center justify-center h-full px-8 text-white w-full gap-12 text-center md:text-left">
           {/* Título y descripción */}
           <div className="md:w-1/2 mb-8 md:mb-0 ">
-            <h1 className="text-4xl md:text-6xl font-bold mb-8 p-4">{trendingContent?.title} </h1>
+            <h1 className="text-4xl md:text-6xl font-bold mb-8 p-4 hover:font-extrabold transition duration-300 hover:scale-[1.02]  ">
+              {trendingContent?.title}{' '}
+            </h1>
 
-            <p className="text-lg md:text-xl bg-black/10 p-4 rounded-md">
+            <p className="text-lg md:text-xl bg-black/10 p-4 rounded-md transition duration-300 hover:scale-[1.02] hover:bg-white/20 hover:-translate-y-1 hover:shadow-2xl  ">
               {trendingContent?.overview}
             </p>
+
+            <a
+              href={`/${contentType}/${trendingContent?.id}`}
+              className="inline-block mt-4 ml-2 px-6 py-2 bg-green-500 text-white rounded-lg shadow-md hover:bg-green-400 transition-transform hover:scale-105"
+            >
+              Más información
+            </a>
           </div>
 
           {/* Card de reseña */}
-          <div className="md:w-1/2 bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-lg text-white transition duration-300 hover:scale-[1.02] hover:bg-white/20 hover:-translate-y-1 hover:shadow-2xl ">
+          <div className="md:w-1/2 bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-lg text-white transition duration-300 hover:scale-[1.02] hover:bg-white/10 hover:-translate-y-1 hover:shadow-2xl ">
             {contentReview?.results?.length > 0 ? (
               <>
                 <div className="flex justify-between items-start mb-4">

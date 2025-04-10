@@ -1,16 +1,10 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useContentStore } from '../store/content'
-
-export interface TrendingContent {
-  id: number
-  title: string
-  overview: string
-  backdrop_path: string
-}
+import { Content } from '../types'
 
 const useGetTrendingContent = () => {
-  const [trendingContent, setTrendingContent] = useState<TrendingContent | null>(null)
+  const [trendingContent, setTrendingContent] = useState<Content | null>(null)
   const { contentType } = useContentStore()
   useEffect(() => {
     const getTrendingContent = async () => {

@@ -53,11 +53,9 @@ const MoviePage = () => {
 
       <div className=" bg-black  relative  flex flex-col items-start justify-center h-full px-8 max-w-3xl text-white">
         <h1 className="text-4xl md:text-6xl font-bold mb-4 "> Reseñas </h1>
-        <p className="text-lg md:text-xl mb-6 ">{reviews?.results[0].author}</p>
-        <p className="text-lg md:text-xl mb-6 ">{reviews?.results[0].content}</p>
+        <p className="text-lg md:text-xl mb-6 ">{reviews?.results[0]?.author}</p>
+        <p className="text-lg md:text-xl mb-6 ">{reviews?.results[0]?.content}</p>
       </div>
-
-
     </div>
   )
 }
