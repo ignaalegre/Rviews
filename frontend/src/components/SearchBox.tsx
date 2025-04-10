@@ -1,14 +1,14 @@
-import { useContentType } from '../context/ContentTypeContext.tsx'
+import { useContentStore } from '../store/content'
 import React from "react"
 import { useNavigate } from "react-router-dom"
 
 const SearchBox = () => {
     const [searchTerm, setSearchTerm] = React.useState('')
-    const { selected } = useContentType()
+    const { contentType } = useContentStore()
     const navigate = useNavigate()
 
     const handleSubmit = () => {
-        navigate(`/search/${selected}/${searchTerm}`)
+        navigate(`/search/${contentType}/${searchTerm}`)
     }
 
     return (
