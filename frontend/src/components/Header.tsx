@@ -1,12 +1,12 @@
 import { useContentStore } from '../store/content'
-
+import { Link } from 'react-router-dom'
 export default function Header() {
   const { contentType, setContentType } = useContentStore()
 
   return (
     <header className="bg-gray-900 text-white px-6 py-4 shadow-md">
       <nav className="flex items-center justify-between max-w-6xl mx-auto">
-        <h1 className="text-2xl font-bold">Rviews</h1>
+        <Link to='/' className="text-2xl font-bold">Rviews</Link>
         <ul className="flex space-x-6">
           <li>
             <button

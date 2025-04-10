@@ -14,7 +14,6 @@ const MoviePage = () => {
     try {
       const res = await axios.get(`http://localhost:4001/movie/${id}/details`)
       setContent(res.data.content)
-      console.log(res.data.content)
     } catch (error) {
       console.log(error)
     }
@@ -23,7 +22,6 @@ const MoviePage = () => {
     try {
       const res = await axios.get(`http://localhost:4001/movie/${id}/reviews`)
       setReviews(res.data.content)
-      console.log(res.data.content)
     } catch (error) {
       console.log(error)
     }
@@ -51,11 +49,14 @@ const MoviePage = () => {
         <p className="text-lg md:text-xl mb-6 ">{content?.overview}</p>
       </div>
 
+      {/*
       <div className=" bg-black  relative  flex flex-col items-start justify-center h-full px-8 max-w-3xl text-white">
         <h1 className="text-4xl md:text-6xl font-bold mb-4 "> Reseñas </h1>
         <p className="text-lg md:text-xl mb-6 ">{reviews?.results[0].author}</p>
         <p className="text-lg md:text-xl mb-6 ">{reviews?.results[0].content}</p>
       </div>
+      */}
+
 
 
     </div>
