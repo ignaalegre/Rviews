@@ -1,41 +1,38 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import axios from 'axios'
-import { useMutation } from 'react-query'
+import { useContentStore } from '../store/content'
+import useGetTrendingContent from '../hooks/useGetTrending'
 
 const Hero = () => {
-  const [results, setResults] = React.useState()
-  const [searchTerm, setSearchTerm] = React.useState('')
-  const [contentType, setContentType] = React.useState('movie')
-  const [content, setContent] = React.useState<any>(null)
+  const { contentType } = useContentStore()
+  const { trendingContent } = useGetTrendingContent()
+  const [contentReview, setContentReview] = React.useState<any>(null)
 
-  const getTrending = async () => {
+  const getReviews = async () => {
     try {
-      const res = await axios.get(`http://localhost:4001/${contentType}/trending`)
-      setContent(res.data.content)
+      const res = await axios.get(
+        `http://localhost:4001/${contentType}/${trendingContent?.id}/reviews`,
+      )
+      setContentReview(res.data.content)
+      console.log(res.data.content)
     } catch (error) {
       console.log(error)
     }
   }
+  //Carga el contenido y luego carga el contenido de las reseñas
 
-  const handleSubmit = async () => {
-    try {
-      const res = await axios.get(`http://localhost:4001/search/movie/${searchTerm}`)
-      setResults(res.data.content.results[0].title)
-      console.log(res.data.content.results[0])
-    } catch (e: any) {
-      console.log(e.message)
+  useEffect(() => {
+    if (trendingContent?.id) {
+      getReviews()
+      console.log('trending', trendingContent?.id)
     }
-  }
-
-  React.useEffect(() => {
-    getTrending()
-  }, [])
+  }, [trendingContent])
 
   return (
-    <div className="relative w-full h-screen">
+    <div className="relative w-full min-h-screen ">
       {/* Imagen de fondo */}
       <img
-        src={`https://image.tmdb.org/t/p/original/${content?.backdrop_path}`}
+        src={`https://image.tmdb.org/t/p/original/${trendingContent?.backdrop_path}`}
         alt="Fondo de película"
         className="object-cover w-full h-full absolute z-0"
       />
@@ -44,24 +41,52 @@ const Hero = () => {
       <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black z-10" />
 
       {/* Contenido */}
-      <div className="relative z-20 flex flex-col items-start justify-center h-full px-8 max-w-3xl text-white">
-        <h1 className="text-4xl md:text-6xl font-bold mb-4"> {content?.title}</h1>
-        <p className="text-lg md:text-xl mb-6">{content?.overview}</p>
-        <input
-          type="text"
-          placeholder="Buscar una película..."
-          value={searchTerm}
-          onChange={e => setSearchTerm(e.target.value)}
-          className="w-full px-4 py-2 rounded-md bg-white/20 placeholder-white text-white focus:outline-none focus:ring-2 focus:ring-white"
-        />
-        <button
-          onClick={() => handleSubmit()}
-          className="mt-4 px-6 py-2 bg-green-500 text-white rounded-md"
-        >
-          Buscar
-        </button>
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="relative z-40 flex flex-col md:flex-row items-center justify-center h-full px-8 text-white w-full gap-12 text-center md:text-left">
+          {/* Título y descripción */}
+          <div className="md:w-1/2 mb-8 md:mb-0 ">
+            <h1 className="text-4xl md:text-6xl font-bold mb-8 p-4">{trendingContent?.title} </h1>
+
+            <p className="text-lg md:text-xl bg-black/10 p-4 rounded-md">
+              {trendingContent?.overview}
+            </p>
+          </div>
+
+          {/* Card de reseña */}
+          <div className="md:w-1/2 bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-lg text-white transition duration-300 hover:scale-[1.02] hover:bg-white/20 hover:-translate-y-1 hover:shadow-2xl ">
+            {contentReview?.results?.length > 0 ? (
+              <>
+                <div className="flex justify-between items-start mb-4">
+                  <div>
+                    <h2 className="text-xl font-semibold">{contentReview.results[0].author}</h2>
+                    <h3 className="text-l font-light">
+                      @{contentReview.results[0].author_details.username}
+                    </h3>
+                    <h4 className="text-sm font-extralight">
+                      {contentReview.results[0].created_at.slice(0, 10)}
+                    </h4>
+                  </div>
+                  <span className="text-4xl font-bold bg-orange-500 text-white rounded-full w-16 h-16 flex items-center justify-center">
+                    {contentReview.results[0].author_details.rating}
+                  </span>
+                </div>
+                <p className="text-sm ">
+                  {contentReview.results[0].content.length > 1200
+                    ? contentReview.results[0].content.slice(0, 1200) + '...'
+                    : contentReview.results[0].content}
+                </p>
+              </>
+            ) : (
+              <div className="text-center">
+                <h2 className="text-xl font-semibold mb-2">¡Sé el primero en dejar una reseña!</h2>
+                <p className="text-sm">
+                  Todavía no hay opiniones para este título. ¿Te animás a ser el primero?
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
-      <div>{results !== '' && <h1 className="text-white ">{results}</h1>}</div>
     </div>
   )
 }
