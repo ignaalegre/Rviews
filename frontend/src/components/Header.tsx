@@ -1,17 +1,23 @@
-import { useContentStore } from '../store/content'
+import { useContentStore } from '../store/contentStore'
 import { Link } from 'react-router-dom'
+import { FaBars } from 'react-icons/fa'
+import { useSidebarStore } from '../store/sidebarStore'
 
 export default function Header() {
   const { contentType, setContentType } = useContentStore()
+  const { toggleSidebar } = useSidebarStore()
 
   return (
     <header className="bg-gray-900 text-white px-6 py-4 shadow-md">
-      <nav className="flex items-center justify-center max-w-6xl mx-auto">
+      <nav className="flex items-center justify-center max-w-screen-2xl mx-auto">
         <div className="flex items-center gap-4 mr-auto">
-          <button className="text-white hover:text-green-400 transition-transform hover:scale-110">
-            ☰
+          <button
+            className="text-white hover:text-green-400 transition-transform hover:scale-110"
+            onClick={toggleSidebar}
+          >
+            <FaBars />
           </button>
-          <Link to="/" className="text-2xl font-bold">
+          <Link to="/" className="text-2xl font-bold hover:scale-110 transition-transform">
             Rviews
           </Link>
         </div>

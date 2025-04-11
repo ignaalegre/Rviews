@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import SearchBox from '../components/SearchBox'
 import { useParams } from 'react-router-dom'
-import { useContentStore } from '../store/content'
+import { useContentStore } from '../store/contentStore'
 import axios from 'axios'
-import ResultItem from '../components/ResultItem.tsx'
-import Pagination from '../components/Pagination.tsx'
+import ResultItem from '../components/ResultItem'
+import Pagination from '../components/Pagination'
 
 const SearchPage = () => {
   const [currentPage, setCurrentPage] = useState<number>(1)
@@ -16,7 +16,9 @@ const SearchPage = () => {
 
   const fetchData = async () => {
     try {
-      const res = await axios.get(`http://localhost:4001/search/${contentType}/${query}/${currentPage}`)
+      const res = await axios.get(
+        `http://localhost:4001/search/${contentType}/${query}/${currentPage}`,
+      )
       const answer = res.data.content
       const data = answer.results
       setTotalPages(answer.total_pages)
@@ -48,7 +50,11 @@ const SearchPage = () => {
           ))}
         </div>
       )}
-      <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages}></Pagination>
+      <Pagination
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        totalPages={totalPages}
+      ></Pagination>
     </div>
   )
 }
