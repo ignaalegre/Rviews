@@ -27,7 +27,7 @@ export default function Header() {
               onClick={() => setContentType('movie')}
               className={`px-3 py-1 rounded ${
                 contentType === 'movie'
-                  ? 'bg-green-400 text-white'
+                  ? 'bg-green-500 text-white hover:bg-green-400'
                   : 'text-gray-300 hover:text-white'
               } transition-100 hover:scale-105 hover:shadow-2xl  `}
             >
@@ -39,7 +39,7 @@ export default function Header() {
               onClick={() => setContentType('tv')}
               className={`px-3 py-1 rounded ${
                 contentType === 'tv'
-                  ? 'bg-green-400 text-white'
+                  ? 'bg-green-500 text-white hover:bg-green-400'
                   : 'text-gray-300 hover:text-white transition-100 hover:scale-105 hover:shadow-2xl '
               }`}
             >

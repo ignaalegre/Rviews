@@ -3,10 +3,11 @@ import { createUserReview, getAllReviews,getOneReviews, updateUserReview, delete
 
 const router = Router()
 
-router.post('/create', createUserReview)
-router.get('/all', getAllReviews)
-router.get('/:id', getOneReviews)
-router.patch('/update/:id', updateUserReview)
-router.delete('/delete/:id', deleteUserReview)
+router.post('/:type/create', createUserReview)
+router.get('/:type/all', getAllReviews)
+router.get('/:type/:id', getOneReviews)
+router.patch('/:type/update/:id', updateUserReview)
+router.delete('/:type/delete/:id', deleteUserReview)
+
 
 export default router

@@ -15,7 +15,6 @@ const Hero = () => {
         `http://localhost:4001/${contentType}/${trendingContent?.id}/reviews`,
       )
       setContentReview(res.data.content)
-      console.log(res.data.content)
     } catch (error) {
       console.log(error)
     }
@@ -25,7 +24,6 @@ const Hero = () => {
   useEffect(() => {
     if (trendingContent?.id) {
       getReviews()
-      console.log('trending', trendingContent?.id)
     }
   }, [trendingContent])
 

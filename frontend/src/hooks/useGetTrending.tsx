@@ -9,7 +9,6 @@ const useGetTrendingContent = () => {
   useEffect(() => {
     const getTrendingContent = async () => {
       const res = await axios.get(`http://localhost:4001/${contentType}/trending`)
-      console.log(res.data.content)
       const content = res.data.content
       setTrendingContent({
         ...content,
