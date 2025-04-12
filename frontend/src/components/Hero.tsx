@@ -54,7 +54,9 @@ const Hero = () => {
             </h1>
 
             <p className="text-lg md:text-xl bg-black/10 p-4 rounded-md transition duration-300 hover:scale-[1.02] hover:bg-white/20 hover:-translate-y-1 hover:shadow-2xl  ">
-              {trendingContent?.overview}
+              {trendingContent?.overview && trendingContent.overview.trim() !== ''
+                ? trendingContent.overview
+                : 'No hay descripción disponible para este título.'}
             </p>
 
             <a

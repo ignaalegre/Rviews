@@ -1,7 +1,7 @@
 
 import { create } from 'zustand'
 import axios from 'axios'
-import { FavouriteContent } from '../types'
+import { FavouriteContent } from '../../../shared/types'
 
 
 interface FavouritesState {

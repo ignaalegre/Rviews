@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa'
-import { FavouriteContent } from '../types'
+import { FavouriteContent } from '../../../shared/types'
 import { RiTvFill } from 'react-icons/ri'
 import { Link } from 'react-router-dom'
 import { MdLocalMovies } from 'react-icons/md'
-import { Review } from '../types'
+import { Review } from '../../../shared/types'
 
 interface NavItemProps {
   icon: React.ReactNode

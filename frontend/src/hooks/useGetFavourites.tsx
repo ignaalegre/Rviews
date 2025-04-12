@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { FavouriteContent } from '../types'
+import { FavouriteContent } from '../../../shared/types'
 
 const useGetFavourites = () => {
   const [favourites, setFavourites] = useState<FavouriteContent[]>([])

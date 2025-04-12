@@ -1,4 +1,4 @@
-import { FavouriteContent } from "../types/favouriteContent.type";
+import { FavouriteContent } from "../../shared/types";
 import { Request, Response } from "express";
 import { favouriteMovies, favouriteTvShows } from "../data/memory";
 

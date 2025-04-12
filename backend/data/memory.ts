@@ -1,5 +1,5 @@
-import { Review } from '../types/review.type';
-import { FavouriteContent } from '../types/favouriteContent.type';
+import { Review } from "../../shared/types";
+import { FavouriteContent } from "../../shared/types";
 
 export const movieReviews: Review[] = [];
 export const tvReviews: Review[] = [];

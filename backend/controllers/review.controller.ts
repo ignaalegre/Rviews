@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { Review } from '../types/review.type';
+import { Review } from "../../shared/types";
 import { movieReviews, tvReviews, getNextReviewId } from '../data/memory'; 
 
 export const createUserReview = (req: Request, res: Response): void => {

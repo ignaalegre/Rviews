@@ -4,7 +4,7 @@ import { SMALL_IMG_BASE_URL } from '../utils/constants'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { Content } from '../types'
+import { Content } from '../../../shared/types'
 
 const MovieSlider = ({ category }: { category: { id: string; label: string } }) => {
   const { contentType } = useContentStore()

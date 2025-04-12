@@ -2,15 +2,15 @@
   "compilerOptions": {
     "target": "es6",
     "module": "commonjs",
-    "rootDir": ".",
+    "rootDir": "../",
     "outDir": "./dist",
     "strict": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "allowImportingTsExtensions": true,
     "noEmit": true,
+    "allowImportingTsExtensions": true
   },
-  "include": ["**/*.ts"],
-  "exclude": ["node_modules"]
+"include": ["./**/*.ts", "../shared/**/*.ts"],
+"exclude": ["../node_modules"]
 }

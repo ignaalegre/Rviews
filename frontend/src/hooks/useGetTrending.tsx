@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useContentStore } from '../store/contentStore'
-import { Content } from '../types'
+import { Content } from '../../../shared/types'
 
 const useGetTrendingContent = () => {
   const [trendingContent, setTrendingContent] = useState<Content | null>(null)
