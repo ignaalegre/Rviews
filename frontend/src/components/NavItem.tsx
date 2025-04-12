@@ -47,7 +47,7 @@ const NavItem: React.FC<NavItemProps> = ({
   return (
     <div className="flex flex-col w-full">
       <div
-        className="flex items-center gap-2 cursor-pointer hover:text-green-300 w-full justify-between"
+        className="flex items-center gap-2 cursor-pointer hover:text-green-400 w-full justify-between"
         onClick={handleTitleClick}
       >
         <div className="flex items-center gap-2 ">
@@ -61,7 +61,7 @@ const NavItem: React.FC<NavItemProps> = ({
       {isOpen && expanded && (
         <div
           onClick={handleMoviesClick}
-          className="flex flex-row ml-4 mt-4 items-center gap-2 cursor-pointer hover:text-green-300 transform w-full justify-between"
+          className="flex flex-row ml-4 mt-4 items-center gap-2 cursor-pointer hover:text-green-400 transform w-full justify-between"
         >
           <div className="flex items-center gap-2">
             <MdLocalMovies />
@@ -79,7 +79,7 @@ const NavItem: React.FC<NavItemProps> = ({
               const id = 'id' in item ? item.id : item.show_id
               return (
                 <Link to={`/${item.contentType}/${id}`} key={id}>
-                  <div className="cursor-pointer hover:text-blue-400">{item.title}</div>
+                  <div className="cursor-pointer hover:text-green-400">{item.title}</div>
                 </Link>
               )
             })
@@ -92,7 +92,7 @@ const NavItem: React.FC<NavItemProps> = ({
       {isOpen && expanded && (
         <div
           onClick={handleSeriesClick}
-          className="flex flex-row ml-4 mt-4 items-center gap-2 cursor-pointer hover:text-green-300 transform w-full justify-between"
+          className="flex flex-row ml-4 mt-4 items-center gap-2 cursor-pointer hover:text-green-400 transform w-full justify-between"
         >
           <div className="flex items-center gap-2">
             <RiTvFill />
@@ -109,7 +109,7 @@ const NavItem: React.FC<NavItemProps> = ({
               const id = 'id' in item ? item.id : item.show_id
               return (
                 <Link to={`/${item.contentType}/${id}`} key={id}>
-                  <div className="cursor-pointer hover:text-blue-400">{item.title}</div>
+                  <div className="cursor-pointer hover:text-green-400">{item.title}</div>
                 </Link>
               )
             })

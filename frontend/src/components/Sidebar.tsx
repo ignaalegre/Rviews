@@ -36,12 +36,15 @@ const Sidebar = () => {
   }, [isOpen])
 
   return (
-    <div style={{ overflow: 'hidden' }} className="flex flex-col bg-gray-900">
+    <div
+      style={{ overflow: 'hidden' }}
+      className={`flex flex-col bg-gray-900 'scrollbar-hide' ${isOpen && 'border-r-4 border-gray-700/85'} `}
+    >
       {isVisible && (
         <motion.div
           initial={{ width: 0 }}
           animate={{ width: isOpen ? 240 : 0 }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: 0.4 }}
           className={`bg-gray-900 h-screen text-white p-4 flex  `}
           style={{ outline: 'none' }}
         >
