@@ -6,6 +6,7 @@ import { MOVIE_CATEGORIES, TV_CATEGORIES } from '../utils/constants'
 
 const HomePage = () => {
   const { contentType } = useContentStore()
+
   return (
     <>
       <div className="flex flex-col w-full overflow-x-hidden">

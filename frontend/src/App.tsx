@@ -7,9 +7,11 @@ import SearchPage from './pages/SearchPage'
 import NotFound from './pages/NotFound'
 import TvPage from './pages/TvPage'
 import Sidebar from './components/Sidebar'
+import { Toaster } from 'react-hot-toast'
 function App() {
   return (
     <>
+      <Toaster />
       <Header />
       <div className="flex max-w-screen overflow-x-hidden">
         <Sidebar />
