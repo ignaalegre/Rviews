@@ -5,7 +5,7 @@ const router = Router()
 
 router.post('/:type/create', createUserReview)
 router.get('/:type/all', getAllReviews)
-router.get('/:type/:id', getOneReviews)
+router.get('/:type/:id', getOneReviews) // De momento sin usar
 router.patch('/:type/update/:id', updateUserReview)
 router.delete('/:type/delete/:id', deleteUserReview)
 

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import axios from 'axios'
 import toast from 'react-hot-toast'
+import { useReviewsStore } from '../../store/reviewsStore'
 
 type Props = {
   show_id: string
@@ -13,6 +14,7 @@ const CreateReview = ({ show_id, title, contentType }: Props) => {
   const [username, setUsername] = useState<string>('')
   const [rating, setRating] = useState<number>(0)
   const [content, setContent] = useState<string>('')
+  const { fetchMovieReviews, fetchTvReviews } = useReviewsStore()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -26,8 +28,8 @@ const CreateReview = ({ show_id, title, contentType }: Props) => {
     data.append('title', title)
     data.append('author', author)
     data.append('author_details.name', author) // mismo valor que author
-    data.append('username', username)
-    data.append('rating', rating.toString())
+    data.append('author_details.username', username)
+    data.append('author_details.rating', rating.toString())
     data.append('content', content)
 
     try {
@@ -41,6 +43,11 @@ const CreateReview = ({ show_id, title, contentType }: Props) => {
       setUsername('')
       setRating(0)
       setContent('')
+      if (contentType === 'movie') {
+        fetchMovieReviews()
+      } else if (contentType === 'tv') {
+        fetchTvReviews()
+      }
       toast.success('Reseña publicada con éxito.')
     } catch (error) {
       console.error('Error al enviar la reseña:', error)
@@ -75,10 +82,13 @@ const CreateReview = ({ show_id, title, contentType }: Props) => {
           <label className="block mb-1">Rating</label>
           <select
             className="w-full p-2 rounded-md text-black"
-            onChange={e => setRating(Number(e.target.value))}
+            value={rating} // Asigna el valor actual de rating
+            onChange={e => setRating(Number(e.target.value))} // Actualiza el estado de rating al seleccionar un nuevo valor
           >
             {Array.from({ length: 11 }, (_, i) => (
-              <option key={i} value={rating}>
+              <option key={i} value={i}>
+                {' '}
+                {/* Aquí el value debería ser 'i', no 'rating' */}
                 {i}
               </option>
             ))}

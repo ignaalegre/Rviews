@@ -5,9 +5,9 @@ import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import { MovieDetailsResponse, Review } from '../../../shared/types'
 import { MdOutlineInfo } from 'react-icons/md'
-import { FaTrash } from 'react-icons/fa'
-import { FaEdit } from 'react-icons/fa'
+
 import CreateReview from '../components/MoviePage/CreateReview.tsx'
+import UserReviews from '../components/MoviePage/UserReviews.tsx'
 
 const MoviePage = () => {
   const [content, setContent] = useState<MovieDetailsResponse['content'] | null>(null)
@@ -37,20 +37,20 @@ const MoviePage = () => {
   }, [])
 
   return (
-    <div className="flex flex-col w-full overflow-x-hidden">
-      <div className="relative w-full h-[91vh] scrollbar-hide  bg-black text-white">
+    <div className="flex flex-col w-full h-full overflow-x-hidden">
+      <div className="relative w-full h-max scrollbar-hide overflow-y-auto bg-black text-white">
         {/* Fondo difuminado con gradiente negro */}
         <div className="absolute inset-0 z-0">
           <img
             src={`https://image.tmdb.org/t/p/original/${content?.backdrop_path}`}
             alt="Fondo de película"
-            className="w-full h-[90vh] object-cover blur-sm"
+            className="w-full h-[91vh] object-cover blur-sm"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black via-black/60 to-transparent" />
         </div>
         {/* Contenido principal tipo hero */}
 
-        <div className=" relative z-10 flex flex-col  md:flex-row md:ml-32 items-center justify-center gap-32 min-h-[91vh] px-4 md:px-8 max-w-full mx-auto text-white py-8 md:py-0 space-y-4 md:space-y-0 scrollbar-hide">
+        <div className=" relative z-10 flex flex-col  lg:flex-row md:ml-32 items-center justify-center gap-32 min-h-[91vh] px-4 lg:px-8 max-w-full mx-auto text-white py-8 lg:py-0 space-y-4 lg:space-y-0 scrollbar-hide">
           <div className="flex flex-col items-center justify-center text-center space-y-4 md:space-y-6">
             <img
               src={`https://image.tmdb.org/t/p/w500/${content?.poster_path}`}
@@ -70,7 +70,7 @@ const MoviePage = () => {
           </div>
 
           {/* Título y descripción */}
-          <div className=" max-w-xl text-center md:text-left bg-black/10 p-6 rounded-lg shadow-lg hover:scale-[1.02] transition-transform duration-300 hover:shadow-2xl">
+          <div className=" max-w-xl text-center  md:text-left bg-black/10 p-6 rounded-lg shadow-lg hover:scale-[1.02] transition-transform duration-300 hover:shadow-2xl">
             <div className="flex w-full items-center flex-row justify-between md:justify-start gap-4 mb-4">
               <h1 className="text-4xl md:text-6xl font-bold">{content?.title}</h1>
               {content?.vote_average && (
@@ -169,49 +169,11 @@ const MoviePage = () => {
         <div className="max-w-5xl mx-auto">
           {/* Mis Reseñas */}
           <h2 className="text-3xl font-bold mb-6">Mis Reseñas</h2>
-
           {/* Formulario para nueva reseña */}
           {content && id && <CreateReview show_id={id} title={content.title} contentType="movie" />}
-
-          {/* Reseñas propias hardcodeadas */}
-          <div className="space-y-6 mb-16">
-            <div className="bg-zinc-800 p-6 rounded-md shadow-md">
-              <div className="flex justify-between items-start mb-2">
-                <h3 className="font-bold text-xl">Mi Reseña #1</h3>
-                <div className="space-x-2">
-                  <button className="text-sm text-yellow-400">
-                    <FaEdit />
-                  </button>
-                  <button className="text-sm text-red-500">
-                    <FaTrash />
-                  </button>
-                </div>
-              </div>
-              <p>
-                Esta película me encantó. La dirección, la actuación y la música fueron de la gran
-                siete.
-              </p>
-            </div>
-
-            <div className="bg-zinc-800 p-6 rounded-md shadow-md">
-              <div className="flex justify-between items-start mb-2">
-                <h3 className="font-bold text-xl">Mi Reseña #2</h3>
-                <div className="space-x-2">
-                  <button className="text-sm text-yellow-400">
-                    {' '}
-                    <FaEdit />
-                    Editar
-                  </button>
-                  <button className="text-sm text-red-500">
-                    <FaTrash />
-                    Eliminar
-                  </button>
-                </div>
-              </div>
-              <p>Buena peli, pero el final me pareció flojo. Igual la recomendaría.</p>
-            </div>
-          </div>
-
+          {/* Reseñas propias  */}
+          <h1 className="font-bold text-2xl p-4"> Mis Reseñas</h1>
+          <UserReviews show_id={id} contentType="movie" />
           {/* Reseñas de usuarios */}
           <h2 className="text-3xl font-bold mb-6">Reseñas de Usuarios</h2>
           <div className="space-y-6">
