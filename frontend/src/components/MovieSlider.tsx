@@ -49,7 +49,7 @@ const MovieSlider = ({ category }: { category: { id: string; label: string } }) 
         <div className="flex space-x-4 overflow-x-auto scrollbar-hide w-full" ref={sliderRef}>
           {content?.map(item => (
             <Link
-              to={`/watch/${item.id}`}
+              to={`/${contentType}/${item.id}`}
               className="min-w-[250px] relative group hover:text-green-400"
               key={item.id}
             >

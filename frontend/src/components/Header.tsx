@@ -1,11 +1,14 @@
 import { useContentStore } from '../store/contentStore'
-import { Link } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { FaBars } from 'react-icons/fa'
 import { useSidebarStore } from '../store/sidebarStore'
+import { useEffect } from 'react'
+import SearchBar from './SearchBar'
 
 export default function Header() {
   const { contentType, setContentType } = useContentStore()
   const { toggleSidebar } = useSidebarStore()
+  const navigate = useNavigate();
 
   return (
     <header className="bg-gray-900 text-white px-6 py-4 shadow-md">
@@ -20,11 +23,17 @@ export default function Header() {
           <Link to="/" className="text-2xl font-bold hover:scale-110 transition-transform">
             Rviews
           </Link>
+          {/* Barra de búsqueda importada como componente */}
+          <SearchBar />
         </div>
+
+        
         <ul className="flex space-x-6">
           <li>
             <button
-              onClick={() => setContentType('movie')}
+              onClick={() => {
+                navigate('/') 
+                setContentType('movie')}}
               className={`px-3 py-1 rounded ${
                 contentType === 'movie'
                   ? 'bg-green-500 text-white hover:bg-green-400'
@@ -36,7 +45,9 @@ export default function Header() {
           </li>
           <li>
             <button
-              onClick={() => setContentType('tv')}
+              onClick={() => {
+                navigate('/') 
+                setContentType('tv')}}
               className={`px-3 py-1 rounded ${
                 contentType === 'tv'
                   ? 'bg-green-500 text-white hover:bg-green-400'
