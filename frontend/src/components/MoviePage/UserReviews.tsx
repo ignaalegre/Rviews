@@ -4,6 +4,7 @@ import { useReviewsStore } from '../../store/reviewsStore'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 import { Review } from '../../../../shared/types'
+import ModalForm from '../Modal'
 
 type Props = {
   show_id: string | undefined
@@ -14,13 +15,18 @@ const UserReviews = ({ show_id, contentType }: Props) => {
   const { moviesReviews, tvReviews, fetchMovieReviews, fetchTvReviews } = useReviewsStore()
 
   const [allUserReviews, setAllUserReviews] = useState<Review[]>([])
+  const [isModalOpen, setModalOpen] = useState(false)
+  const handleFormSubmit = (data: any) => {
+    console.log('Datos del formulario:', data)
+    // Podés hacer lo que quieras acá (API, lógica, etc)
+  }
 
   useEffect(() => {
     if (!show_id) return
     if (contentType === 'movie') {
-      setAllUserReviews(moviesReviews.filter(r => r.show_id === show_id))
+      setAllUserReviews(moviesReviews?.filter(r => r.show_id === show_id))
     } else if (contentType === 'tv') {
-      setAllUserReviews(tvReviews.filter(r => r.show_id === show_id))
+      setAllUserReviews(tvReviews?.filter(r => r.show_id === show_id))
     }
   }, [moviesReviews, tvReviews])
 
@@ -34,14 +40,15 @@ const UserReviews = ({ show_id, contentType }: Props) => {
 
   const handleDelete = async (reviewId: number | undefined) => {
     try {
+      console.log('fetching' + `http://localhost:4001/review/${contentType}/delete/${reviewId}`)
       const res = await axios.delete(
         `http://localhost:4001/review/${contentType}/delete/${reviewId}`,
       )
       if (res.status === 200) {
         if (contentType === 'movie') {
-          fetchMovieReviews()
+          await fetchMovieReviews()
         } else if (contentType === 'tv') {
-          fetchTvReviews()
+          await fetchTvReviews()
         }
         toast.success('Reseña eliminada con éxito.')
       }
@@ -53,7 +60,7 @@ const UserReviews = ({ show_id, contentType }: Props) => {
 
   return (
     <div className="space-y-6 mb-16">
-      {allUserReviews.map((review, index) => (
+      {allUserReviews?.map((review, index) => (
         <div
           key={index}
           className="bg-green-500/20 backdrop-blur-md p-6 rounded-lg shadow-lg text-white transition duration-300 hover:scale-[1.01]"
@@ -81,7 +88,10 @@ const UserReviews = ({ show_id, contentType }: Props) => {
 
               {/* Botones debajo del círculo */}
               <div className="flex space-x-2 justify-between mt-10">
-                <button className=" hover:text-green-400 hover:scale-105">
+                <button
+                  className=" hover:text-green-400 hover:scale-105"
+                  onClick={() => setModalOpen(true)}
+                >
                   <FaEdit className="size-5" />
                 </button>
                 <button
@@ -90,6 +100,12 @@ const UserReviews = ({ show_id, contentType }: Props) => {
                 >
                   <FaTrash className="size-4" />
                 </button>
+
+                <ModalForm
+                  isOpen={isModalOpen}
+                  onClose={() => setModalOpen(false)}
+                  onSubmit={handleFormSubmit}
+                />
               </div>
             </div>
           </div>

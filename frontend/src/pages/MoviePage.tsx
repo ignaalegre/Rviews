@@ -8,10 +8,12 @@ import { MdOutlineInfo } from 'react-icons/md'
 
 import CreateReview from '../components/MoviePage/CreateReview.tsx'
 import UserReviews from '../components/MoviePage/UserReviews.tsx'
+import MovieSlider from '../components/MovieSlider.tsx'
 
 const MoviePage = () => {
   const [content, setContent] = useState<MovieDetailsResponse['content'] | null>(null)
   const [apiReviews, setApiReviews] = useState<{ results: Review[] } | null>(null)
+  const [isModalOpen, setModalOpen] = useState(false)
 
   const { id } = useParams()
 
@@ -70,7 +72,7 @@ const MoviePage = () => {
           </div>
 
           {/* Título y descripción */}
-          <div className=" max-w-xl text-center  md:text-left bg-black/10 p-6 rounded-lg shadow-lg hover:scale-[1.02] transition-transform duration-300 hover:shadow-2xl">
+          <div className=" max-w-xl text-center  md:text-left bg-black/10 p-6  rounded-lg shadow-lg hover:scale-[1.02] transition-transform duration-300 hover:shadow-2xl">
             <div className="flex w-full items-center flex-row justify-between md:justify-start gap-4 mb-4">
               <h1 className="text-4xl md:text-6xl font-bold">{content?.title}</h1>
               {content?.vote_average && (
@@ -164,6 +166,7 @@ const MoviePage = () => {
           </div>
         </div>
       </div>
+
       {/* Sección de Reseñas */}
       <div className="relative w-full bg text-white px-8 py-16">
         <div className="max-w-5xl mx-auto">
@@ -219,6 +222,11 @@ const MoviePage = () => {
             ))}
           </div>
         </div>
+      </div>
+
+      {/* Seccion de MovieSliders "Similares" */}
+      <div className=" text-white py-16 px-8 lg:px-20 mb-16">
+        <MovieSlider category={{ id: `${id}/similar`, label: 'Similares' }} />
       </div>
     </div>
   )

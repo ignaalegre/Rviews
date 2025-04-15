@@ -25,7 +25,7 @@ export const deleteFavouriteMovie = (req: Request, res: Response): void => {
     const {id} = req.params;
     const index = favouriteMovies.findIndex((movie) => movie.id === Number(id));
     if (index === -1) {
-        res.status(404).json({ message: "La película no se encuentra en favoritos" });
+        res.status(200).json({ message: "La película no se encuentra en favoritos" });
         return;
     }
     favouriteMovies.splice(index, 1);
@@ -33,7 +33,7 @@ export const deleteFavouriteMovie = (req: Request, res: Response): void => {
 }
 export const getAllFavouritesMovies = (req: Request, res: Response): void => {
     if (!favouriteMovies.length) {
-        res.status(404).json({ message: "No hay películas en favoritos" });
+        res.status(200).json({ message: "No hay películas en favoritos" });
         return;
     }
     res.status(200).json({ favouriteMovies });
@@ -59,7 +59,7 @@ export const deleteFavouriteTvShow = (req: Request, res: Response): void => {
     const index = favouriteTvShows.findIndex((tvShow) => tvShow.id === Number(id));
 
     if (index === -1) {
-        res.status(404).json({ message: "La serie no se encuentra en favoritos" });
+        res.status(200).json({ message: "La serie no se encuentra en favoritos" });
         return;
     }
     favouriteTvShows.splice(index, 1);
@@ -67,7 +67,7 @@ export const deleteFavouriteTvShow = (req: Request, res: Response): void => {
 }
 export const getAllFavouritesTvShows = (req: Request, res: Response): void => {
     if (!favouriteTvShows.length) {
-        res.status(404).json({ message: "No hay series en favoritos" });
+        res.status(200).json({ message: "No hay series en favoritos" });
         return;
     }
     res.status(200).json({ favouriteTvShows });

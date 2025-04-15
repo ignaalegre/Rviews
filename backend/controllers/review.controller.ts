@@ -53,7 +53,7 @@ export const getAllReviews = async (req: Request, res: Response): Promise<void> 
         return;
     }
     if (!reviews.length) {
-        res.status(404).json({ success: false, message: "No hay reviews" });
+        res.status(200).json({ success: false, message: "No hay reviews" });
         return;
     }
     res.status(200).json({ reviews });
@@ -68,7 +68,7 @@ export const getOneReviews = async (req: Request, res: Response): Promise<void> 
     }
     const review = reviews.find((review) => review.id_ === Number(id));
     if (!review) {
-        res.status(404).json({ success: false, message: "No se ha encontrado la review" });
+        res.status(200).json({ success: false, message: "No se ha encontrado la review" });
         return;
     }
     res.status(200).json({ review });
@@ -90,7 +90,7 @@ export const updateUserReview = async (req: Request, res: Response): Promise<voi
       } = req.body;
     const reviewToUpdate = reviews.find((review) => review.id_ === Number(id));
     if (!reviewToUpdate) {
-        res.status(404).json({ success: false, message: "No se ha encontrado la review" });
+        res.status(200).json({ success: false, message: "No se ha encontrado la review" });
         return;
     }
     const updatedReview: Review = {
@@ -118,7 +118,7 @@ export const deleteUserReview = async (req: Request, res: Response): Promise<voi
     }
     const reviewToDelete = reviews.find((review) => review.id_ === Number(id));
     if (!reviewToDelete) {
-        res.status(404).json({ success: false, message: "No se ha encontrado la review" });
+        res.status(200).json({ success: false, message: "No se ha encontrado la review" });
         return;
     }
     reviews.splice(reviews.indexOf(reviewToDelete), 1);

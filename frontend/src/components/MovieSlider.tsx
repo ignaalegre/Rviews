@@ -14,8 +14,10 @@ const MovieSlider = ({ category }: { category: { id: string; label: string } }) 
   const sliderRef = useRef<HTMLDivElement | null>(null)
   useEffect(() => {
     const getContent = async () => {
+      console.log('fetching ' + `http://localhost:4001/${contentType}/${category.id}`)
       const res = await axios.get(`http://localhost:4001/${contentType}/${category.id}`)
-      setContent(res.data.content)
+
+      setContent(res.data.similar ?? res.data.content)
     }
     getContent()
   }, [contentType, category.id])

@@ -45,9 +45,7 @@ const SearchPage = () => {
         <p className="mt-4">Cargando...</p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
-          {results.map((item, index) => (
-            <ResultItem key={index} result={item} />
-          ))}
+          {results?.map((item, index) => <ResultItem key={index} result={item} />)}
         </div>
       )}
       <Pagination
