@@ -7,7 +7,7 @@ export default function SearchBar() {
   const navigate = useNavigate()
   const { contentType } = useContentStore()
 
-  const handleSubmit = (e : FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const trimmed = query.trim()
     if (trimmed) {
@@ -17,22 +17,20 @@ export default function SearchBar() {
   }
 
   return (
-    <>
-        <form onSubmit={handleSubmit} className="flex-1 mx-8 max-w-md">
-        <input
-            type="text"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Buscar películas o series..."
-            className="w-full px-4 py-2 rounded bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400"
-        />
-        </form>
-        <button
-            type="submit"
-            className="px-4 py-2 bg-green-500 hover:bg-green-400 text-white rounded transition duration-200"
-        >
-            Buscar
-        </button>
-    </>
+    <form onSubmit={handleSubmit} className="flex items-center mx-8 max-w-md gap-2">
+      <input
+        type="text"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        placeholder="Buscar películas o series..."
+        className="flex-1 px-4 py-2 rounded bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400"
+      />
+      <button
+        type="submit"
+        className="px-4 py-2 bg-green-500 hover:bg-green-400 text-white rounded transition duration-200"
+      >
+        Buscar
+      </button>
+    </form>
   )
 }

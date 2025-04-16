@@ -12,7 +12,7 @@ const ResultItem = ({ result }: any) => {
   return (
     <Link
       to={detailUrl}
-      className="bg-white text-black rounded-xl shadow-md overflow-hidden transition-transform hover:scale-105 w-72 cursor-pointer"
+      className="bg-gray-800 rounded-lg shadow-md overflow-hidden aspect-[2/3] transition-transform hover:scale-105"
     >
       <img src={imageUrl} alt={title} className="w-full h-96 object-cover" />
       <div className="p-4">

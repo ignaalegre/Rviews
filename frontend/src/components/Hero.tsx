@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import axios from 'axios'
 import { useContentStore } from '../store/contentStore'
 import useGetTrendingContent from '../hooks/useGetTrending'
-import SearchBox from './SearchBox'
 
 const Hero = () => {
   const { contentType } = useContentStore()

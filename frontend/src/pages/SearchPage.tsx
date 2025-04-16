@@ -38,7 +38,7 @@ const SearchPage = () => {
   }, [query, contentType])
 
   return (
-    <div className="h-screen w-screen bg-gray-900 p-4 text-white">
+    <div className="w-screen bg-gray-700 p-4 text-white">
       {loading ? (
         <p className="mt-4">Cargando...</p>
       ) : (
