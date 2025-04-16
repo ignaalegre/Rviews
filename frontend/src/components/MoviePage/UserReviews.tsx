@@ -55,6 +55,14 @@ const UserReviews = ({ show_id, contentType }: Props) => {
     }
   }
 
+  if (!allUserReviews || allUserReviews.length === 0) {
+    return (
+      <div className="bg-green-500/20 backdrop-blur-md p-6 rounded-lg shadow-lg text-white">
+        <p className="text-sm">Aún no haz hecho ninguna Reseña aquí. Comparte tu Opinion!</p>
+      </div>
+    )
+  }
+
   return (
     <div className="space-y-6 mb-16">
       {allUserReviews?.map((review, index) => (

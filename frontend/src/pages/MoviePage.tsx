@@ -170,7 +170,7 @@ const MoviePage = () => {
       <div className="relative w-full bg text-white px-8 py-16">
         <div className="max-w-5xl mx-auto">
           {/* Mis Reseñas */}
-          <h2 className="text-3xl font-bold mb-6">Mis Reseñas</h2>
+          <h2 className="text-3xl font-bold mb-6">Haz una Reseña!</h2>
           {/* Formulario para nueva reseña */}
           {content && id && <CreateReview show_id={id} title={content.title} contentType="movie" />}
           {/* Reseñas propias  */}
