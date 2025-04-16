@@ -13,7 +13,6 @@ import MovieSlider from '../components/MovieSlider.tsx'
 const MoviePage = () => {
   const [content, setContent] = useState<MovieDetailsResponse['content'] | null>(null)
   const [apiReviews, setApiReviews] = useState<{ results: Review[] } | null>(null)
-  const [isModalOpen, setModalOpen] = useState(false)
 
   const { id } = useParams()
 
@@ -36,7 +35,7 @@ const MoviePage = () => {
   React.useEffect(() => {
     getMovieDetails()
     getReviews()
-  }, [])
+  }, [id])
 
   return (
     <div className="flex flex-col w-full h-full overflow-x-hidden">

@@ -4,7 +4,7 @@ import { useReviewsStore } from '../../store/reviewsStore'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 import { Review } from '../../../../shared/types'
-import ModalForm from '../Modal'
+import Modal from '../EditReviewModal'
 
 type Props = {
   show_id: string | undefined
@@ -16,10 +16,7 @@ const UserReviews = ({ show_id, contentType }: Props) => {
 
   const [allUserReviews, setAllUserReviews] = useState<Review[]>([])
   const [isModalOpen, setModalOpen] = useState(false)
-  const handleFormSubmit = (data: any) => {
-    console.log('Datos del formulario:', data)
-    // Podés hacer lo que quieras acá (API, lógica, etc)
-  }
+  const [selectedReview, setSelectedReview] = useState<Review | null>(null)
 
   useEffect(() => {
     if (!show_id) return
@@ -90,7 +87,10 @@ const UserReviews = ({ show_id, contentType }: Props) => {
               <div className="flex space-x-2 justify-between mt-10">
                 <button
                   className=" hover:text-green-400 hover:scale-105"
-                  onClick={() => setModalOpen(true)}
+                  onClick={() => {
+                    setModalOpen(true)
+                    setSelectedReview(review)
+                  }}
                 >
                   <FaEdit className="size-5" />
                 </button>
@@ -100,12 +100,6 @@ const UserReviews = ({ show_id, contentType }: Props) => {
                 >
                   <FaTrash className="size-4" />
                 </button>
-
-                <ModalForm
-                  isOpen={isModalOpen}
-                  onClose={() => setModalOpen(false)}
-                  onSubmit={handleFormSubmit}
-                />
               </div>
             </div>
           </div>
@@ -116,6 +110,7 @@ const UserReviews = ({ show_id, contentType }: Props) => {
           </p>
         </div>
       ))}
+      <Modal isOpen={isModalOpen} onClose={() => setModalOpen(false)} review={selectedReview} />
     </div>
   )
 }
