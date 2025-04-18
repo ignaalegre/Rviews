@@ -25,7 +25,7 @@ const UserReviews = ({ show_id, contentType }: Props) => {
     } else if (contentType === 'tv') {
       setAllUserReviews(tvReviews?.filter(r => r.show_id === show_id))
     }
-  }, [moviesReviews, tvReviews])
+  }, [show_id, moviesReviews, tvReviews])
 
   useEffect(() => {
     if (contentType === 'movie') {

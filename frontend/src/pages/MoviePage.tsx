@@ -9,6 +9,8 @@ import UserReviews from '../components/MoviePage/UserReviews.tsx'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import MovieSlider from '../components/MovieSlider.tsx'
 import ReactPlayer from 'react-player'
+import ApiExternalReview from '../components/MoviePage/ApiExternalReview.tsx'
+import Details from '../components/MoviePage/Details.tsx'
 
 const MoviePage = () => {
   const [content, setContent] = useState<MovieDetailsResponse['content'] | null>(null)
@@ -126,18 +128,16 @@ const MoviePage = () => {
             url={`https://www.youtube.com/watch?v=${trailers[currentTrailerIdx].key}`}
           />
           <button
-            className={`absolute left-0 top-1/2 transform -translate-y-1/2 md:ml-5 bg-green-500/60 hover:bg-green-400 hover:scale-105 transition-transform text-white py-2 px-4 rounded ${
-              currentTrailerIdx === 0 ? 'opacity-50 cursor-not-allowed' : ''
-            }`}
+            className={`absolute left-0 top-1/2 transform -translate-y-1/2 md:ml-5 bg-green-500/60 hover:bg-green-400 hover:scale-105 transition-transform text-white py-2 px-4 rounded ${currentTrailerIdx === 0 ? 'opacity-50 cursor-not-allowed' : ''
+              }`}
             disabled={currentTrailerIdx === 0}
             onClick={handlePrev}
           >
             <ChevronLeft size={24} />
           </button>
           <button
-            className={`absolute right-0 top-1/2 transform -translate-y-1/2 md:mr-5 bg-green-500/60 hover:bg-green-400 hover:scale-105 transition-transform text-white py-2 px-4 rounded ${
-              currentTrailerIdx === trailers.length - 1 ? 'opacity-50 cursor-not-allowed' : ''
-            }`}
+            className={`absolute right-0 top-1/2 transform -translate-y-1/2 md:mr-5 bg-green-500/60 hover:bg-green-400 hover:scale-105 transition-transform text-white py-2 px-4 rounded ${currentTrailerIdx === trailers.length - 1 ? 'opacity-50 cursor-not-allowed' : ''
+              }`}
             disabled={currentTrailerIdx === trailers.length - 1}
             onClick={handleNext}
           >
@@ -153,84 +153,11 @@ const MoviePage = () => {
         </div>
       )}
 
-      {/* Sección de detalles */}
-      <div className="max-w-5xl mx-auto text-white mt-16 px-6 md:px-0 ">
-        <h1 className="font-bold text-3xl text-center mb-8">Ficha Técnica</h1>
-        {/* Contenedor de detalles */}
-        <div className="bg-zinc-800 p-6 rounded-lg shadow-lg grid grid-cols-1 md:grid-cols-2 gap-4 text-sm md:text-base">
-          {/* Título y descripción general */}
-          <div>
-            <strong>Título:</strong> {content?.title}
-          </div>
-
-          {/* Géneros */}
-          <div>
-            <strong>Géneros:</strong> {content?.genres?.map(g => g.name).join(', ')}
-          </div>
-
-          {/* Votos y Popularidad */}
-          <div>
-            <strong>Votos:</strong> {content?.vote_count} (Promedio: {content?.vote_average})
-          </div>
-          <div>
-            <strong>Popularidad:</strong> {content?.popularity}
-          </div>
-
-          {/* Presupuesto */}
-          <div>
-            <strong>Presupuesto:</strong> ${content?.budget?.toLocaleString()}
-          </div>
-
-          {/* Fecha de lanzamiento y Idioma original */}
-          <div>
-            <strong>Fecha de lanzamiento:</strong> {content?.release_date.slice(0, 4)}
-          </div>
-          <div>
-            <strong>Idioma original:</strong> {content?.original_language}
-          </div>
-
-          {/* País de origen y País de producción */}
-          <div>
-            <strong>País de origen:</strong> {content?.origin_country?.join(', ')}
-          </div>
-          <div>
-            <strong>País de producción:</strong>{' '}
-            {content?.production_countries?.map(c => c.name).join(', ')}
-          </div>
-
-          {/* Duración */}
-          <div>
-            <strong>Duración:</strong> {content?.runtime} min
-          </div>
-
-          {/* Recaudación */}
-          <div>
-            <strong>Recaudación:</strong> ${content?.revenue?.toLocaleString()}
-          </div>
-
-          {/* Productoras */}
-          <div>
-            <strong>Productoras:</strong>{' '}
-            {content?.production_companies?.map(c => c.name).join(', ')}
-          </div>
-
-          {/* Estado */}
-          <div>
-            <strong>Estado:</strong> {content?.status}
-          </div>
-
-          {/* Título original , IMDB ID y ID */}
-          <div>
-            <strong>Título original:</strong> {content?.original_title}
-          </div>
-          <div>
-            <strong>IMDB ID:</strong> {content?.imdb_id}
-          </div>
-          <div>
-            <strong>TMDB ID:</strong> {content?.id}
-          </div>
-        </div>
-      </div>
+      {
+        content ?
+          <Details content={content}></Details> :
+          <></>
+      }
 
       {/* Sección de Reseñas */}
       <div className="relative w-full bg text-white px-8 py-16">
@@ -252,31 +179,7 @@ const MoviePage = () => {
             {apiReviews?.results.reverse().map((review, index) => (
               <div className=" bg-white/20 backdrop-blur-md p-6 rounded-lg shadow-lg text-white transition duration-300 hover:scale-[1.01]  ">
                 {apiReviews?.results?.length > 0 ? (
-                  <>
-                    <div className="flex justify-between items-start mb-4">
-                      <div>
-                        <h2 className="text-xl font-semibold">
-                          {apiReviews.results[index].author}
-                        </h2>
-                        <h3 className="text-l font-light">
-                          @{apiReviews.results[index].author_details.username}
-                        </h3>
-                        <h4 className="text-sm font-extralight">
-                          {apiReviews.results[index].created_at.slice(0, 10)}
-                        </h4>
-                      </div>
-                      <span className="text-2xl font-bold bg-orange-500 text-white rounded-full w-12 h-12 flex items-center justify-center">
-                        {apiReviews.results[index].author_details.rating == null
-                          ? '-'
-                          : apiReviews.results[index].author_details.rating}
-                      </span>
-                    </div>
-                    <p className="text-sm ">
-                      {apiReviews.results[index].content.length > 1200
-                        ? apiReviews.results[index].content.slice(0, 1200) + '...'
-                        : apiReviews.results[index].content}
-                    </p>
-                  </>
+                  <ApiExternalReview key={index} review={apiReviews.results[index]}></ApiExternalReview>
                 ) : (
                   <div className="text-center">
                     <h2 className="text-xl font-semibold mb-2">
