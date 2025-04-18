@@ -40,29 +40,31 @@ const MovieSlider = ({ category }: { category: { id: string; label: string } }) 
   }
   return (
     <div
-      className="bg-black text-white relative px-5 md:px-20"
+      className=" text-white relative px-5 md:px-20"
       onMouseEnter={() => setShowArrows(true)}
       onMouseLeave={() => setShowArrows(false)}
     >
       <h2 className="mb-8 text-2xl font-bold text-center ">{category.label}</h2>
       <div className="w-full overflow-hidden">
         <div className="flex space-x-4 overflow-x-auto scrollbar-hide w-full" ref={sliderRef}>
-          {content?.map(item => (
-            <Link
-              to={`/${contentType}/${item.id}`}
-              className="min-w-[250px] relative group hover:text-green-400"
-              key={item.id}
-            >
-              <div className="rounded-lg overflow-hidden">
-                <img
-                  src={SMALL_IMG_BASE_URL + item?.backdrop_path}
-                  alt="Movie image"
-                  className="transition-transform duration-300 ease-in-out  group-hover:scale-125"
-                ></img>
-              </div>
-              <p className="mt-2 text-center">{item?.title || item?.name}</p>
-            </Link>
-          ))}
+          {content?.map(item =>
+            item.backdrop_path ? (
+              <Link
+                to={`/${contentType}/${item.id}`}
+                className="min-w-[250px] relative group hover:text-green-400"
+                key={item.id}
+              >
+                <div className="rounded-lg overflow-hidden">
+                  <img
+                    src={SMALL_IMG_BASE_URL + item.backdrop_path}
+                    alt="Movie image"
+                    className="transition-transform duration-300 ease-in-out  group-hover:scale-125"
+                  />
+                </div>
+                <p className="mt-2 text-center">{item.title || item.name}</p>
+              </Link>
+            ) : null,
+          )}
         </div>
       </div>
       {showArrows && (

@@ -155,6 +155,8 @@ const MoviePage = () => {
 
       {/* Sección de detalles */}
       <div className="max-w-5xl mx-auto text-white mt-16 px-6 md:px-0 ">
+        <h1 className="font-bold text-3xl text-center mb-8">Ficha Técnica</h1>
+        {/* Contenedor de detalles */}
         <div className="bg-zinc-800 p-6 rounded-lg shadow-lg grid grid-cols-1 md:grid-cols-2 gap-4 text-sm md:text-base">
           {/* Título y descripción general */}
           <div>
@@ -234,16 +236,18 @@ const MoviePage = () => {
       <div className="relative w-full bg text-white px-8 py-16">
         <div className="max-w-5xl mx-auto">
           {/* Mis Reseñas */}
-          <h2 className="text-3xl font-bold mb-6">Haz una Reseña!</h2>
+          <h2 className="text-xl md:text-3xl text-center  font-bold mb-6">Haz una Reseña!</h2>
           {/* Formulario para nueva reseña */}
           <p className="text-sm mb-4">Comparte tu opinión sobre esta película.</p>
 
           {content && id && <CreateReview show_id={id} title={content.title} contentType="movie" />}
           {/* Reseñas propias  */}
-          <h1 className="font-bold text-2xl mt-8 mb-8"> Mis Reseñas</h1>
+          <h1 className="text-xl md:text-3xl text-center m font-bold mt-8 mb-8">Mis Reseñas</h1>
           <UserReviews show_id={id} contentType="movie" />
           {/* Reseñas de usuarios */}
-          <h2 className="text-3xl font-bold mb-8 mt-8">Reseñas de Usuarios</h2>
+          <h2 className="text-xl md:text-3xl text-center  font-bold mb-8 mt-8">
+            Reseñas de Usuarios
+          </h2>
           <div className="space-y-6">
             {apiReviews?.results.reverse().map((review, index) => (
               <div className=" bg-white/20 backdrop-blur-md p-6 rounded-lg shadow-lg text-white transition duration-300 hover:scale-[1.01]  ">
@@ -290,7 +294,7 @@ const MoviePage = () => {
       </div>
 
       {/* Seccion de MovieSliders "Similares" */}
-      <div className=" text-white py-16 px-8 lg:px-20 mb-16">
+      <div className="text-white py-16 px-8 lg:px-20 mb-16  mt-4">
         <MovieSlider category={{ id: `${id}/similar`, label: 'Similares' }} />
       </div>
     </div>
