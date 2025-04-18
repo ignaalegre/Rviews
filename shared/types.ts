@@ -163,3 +163,16 @@ export type TvDetailsResponse = {
     vote_count: number;
   };
 };
+
+export interface Trailer {
+  id: string;
+  iso_639_1: string;
+  iso_3166_1: string;
+  key: string; // ID de YouTube
+  name: string;
+  official: boolean;
+  published_at: string;
+  site: string; // Ej: "YouTube"
+  size: number; // Ej: 1080
+  type: string; // Ej: "Trailer", "Teaser", etc.
+}

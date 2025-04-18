@@ -1,18 +1,20 @@
 import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
-
 import { useParams } from 'react-router-dom'
-import { MovieDetailsResponse, Review } from '../../../shared/types'
+import { MovieDetailsResponse, Review, Trailer } from '../../../shared/types'
 import { MdOutlineInfo } from 'react-icons/md'
-
 import CreateReview from '../components/MoviePage/CreateReview.tsx'
 import UserReviews from '../components/MoviePage/UserReviews.tsx'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import MovieSlider from '../components/MovieSlider.tsx'
+import ReactPlayer from 'react-player'
 
 const MoviePage = () => {
   const [content, setContent] = useState<MovieDetailsResponse['content'] | null>(null)
   const [apiReviews, setApiReviews] = useState<{ results: Review[] } | null>(null)
+  const [trailers, setTrailers] = useState<Trailer[]>([])
+  const [currentTrailerIdx, setCurrentTrailerIdx] = useState(0)
 
   const { id } = useParams()
 
@@ -32,9 +34,29 @@ const MoviePage = () => {
       console.log(error)
     }
   }
+  const getTrailers = async () => {
+    try {
+      const res = await axios.get(`http://localhost:4001/movie/${id}/trailers`)
+      setTrailers(res.data.trailers)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const handleNext = () => {
+    if (currentTrailerIdx < trailers.length - 1) {
+      setCurrentTrailerIdx(currentTrailerIdx + 1)
+    }
+  }
+  const handlePrev = () => {
+    if (currentTrailerIdx > 0) {
+      setCurrentTrailerIdx(currentTrailerIdx - 1)
+    }
+  }
   React.useEffect(() => {
     getMovieDetails()
     getReviews()
+    getTrailers()
   }, [id])
 
   return (
@@ -88,6 +110,48 @@ const MoviePage = () => {
           </div>
         </div>
       </div>
+
+      {/* Sección de trailers */}
+      <h1 className="font-extrabold text-xl md:text-2xl lg:text-4xl text-white justify-center text-center p-12">
+        {' '}
+        Trailers{' '}
+      </h1>
+      {trailers.length > 0 ? (
+        <div className="relative w-full mb-8 p-2 sm:px-10 md:px-32 lg:max-w-screen-xl items-center justify-center mx-auto">
+          <ReactPlayer
+            controls={true}
+            width={'100%'}
+            height={'70vh'}
+            className="mx-auto overflow-hidden rounded-lg"
+            url={`https://www.youtube.com/watch?v=${trailers[currentTrailerIdx].key}`}
+          />
+          <button
+            className={`absolute left-0 top-1/2 transform -translate-y-1/2 md:ml-5 bg-green-500/60 hover:bg-green-400 hover:scale-105 transition-transform text-white py-2 px-4 rounded ${
+              currentTrailerIdx === 0 ? 'opacity-50 cursor-not-allowed' : ''
+            }`}
+            disabled={currentTrailerIdx === 0}
+            onClick={handlePrev}
+          >
+            <ChevronLeft size={24} />
+          </button>
+          <button
+            className={`absolute right-0 top-1/2 transform -translate-y-1/2 md:mr-5 bg-green-500/60 hover:bg-green-400 hover:scale-105 transition-transform text-white py-2 px-4 rounded ${
+              currentTrailerIdx === trailers.length - 1 ? 'opacity-50 cursor-not-allowed' : ''
+            }`}
+            disabled={currentTrailerIdx === trailers.length - 1}
+            onClick={handleNext}
+          >
+            <ChevronRight size={24} />
+          </button>
+        </div>
+      ) : (
+        <div className="mb-8 p-2 sm:px-10 md:px-32">
+          <h2 className="text-xl text-center mt-5">
+            No hay trailers disponibles para{' '}
+            <span className="font-bold text-red-600">{content?.title}</span> 😥
+          </h2>
+        </div>
+      )}
 
       {/* Sección de detalles */}
       <div className="max-w-5xl mx-auto text-white mt-16 px-6 md:px-0 ">
@@ -172,12 +236,14 @@ const MoviePage = () => {
           {/* Mis Reseñas */}
           <h2 className="text-3xl font-bold mb-6">Haz una Reseña!</h2>
           {/* Formulario para nueva reseña */}
+          <p className="text-sm mb-4">Comparte tu opinión sobre esta película.</p>
+
           {content && id && <CreateReview show_id={id} title={content.title} contentType="movie" />}
           {/* Reseñas propias  */}
-          <h1 className="font-bold text-2xl p-4"> Mis Reseñas</h1>
+          <h1 className="font-bold text-2xl mt-8 mb-8"> Mis Reseñas</h1>
           <UserReviews show_id={id} contentType="movie" />
           {/* Reseñas de usuarios */}
-          <h2 className="text-3xl font-bold mb-6">Reseñas de Usuarios</h2>
+          <h2 className="text-3xl font-bold mb-8 mt-8">Reseñas de Usuarios</h2>
           <div className="space-y-6">
             {apiReviews?.results.reverse().map((review, index) => (
               <div className=" bg-white/20 backdrop-blur-md p-6 rounded-lg shadow-lg text-white transition duration-300 hover:scale-[1.01]  ">
