@@ -4,7 +4,7 @@ import { useReviewsStore } from '../../store/reviewsStore'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 import { Review } from '../../../../shared/types'
-import Modal from '../EditReviewModal'
+import Modal from './EditReviewModal'
 
 type Props = {
   show_id: string | undefined

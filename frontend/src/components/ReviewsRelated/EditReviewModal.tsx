@@ -1,8 +1,8 @@
 import { useState, ChangeEvent, FormEvent, useEffect } from 'react'
-import { Review } from '../../../shared/types'
+import { Review } from '../../../../shared/types'
 import { toast } from 'react-hot-toast'
 import axios from 'axios'
-import { useReviewsStore } from '../store/reviewsStore'
+import { useReviewsStore } from '../../store/reviewsStore'
 
 type ModalProps = {
   isOpen: boolean
