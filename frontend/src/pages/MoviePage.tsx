@@ -128,16 +128,18 @@ const MoviePage = () => {
             url={`https://www.youtube.com/watch?v=${trailers[currentTrailerIdx].key}`}
           />
           <button
-            className={`absolute left-0 top-1/2 transform -translate-y-1/2 md:ml-5 bg-green-500/60 hover:bg-green-400 hover:scale-105 transition-transform text-white py-2 px-4 rounded ${currentTrailerIdx === 0 ? 'opacity-50 cursor-not-allowed' : ''
-              }`}
+            className={`absolute left-0 top-1/2 transform -translate-y-1/2 md:ml-5 bg-green-500/60 hover:bg-green-400 hover:scale-105 transition-transform text-white py-2 px-4 rounded ${
+              currentTrailerIdx === 0 ? 'opacity-50 cursor-not-allowed' : ''
+            }`}
             disabled={currentTrailerIdx === 0}
             onClick={handlePrev}
           >
             <ChevronLeft size={24} />
           </button>
           <button
-            className={`absolute right-0 top-1/2 transform -translate-y-1/2 md:mr-5 bg-green-500/60 hover:bg-green-400 hover:scale-105 transition-transform text-white py-2 px-4 rounded ${currentTrailerIdx === trailers.length - 1 ? 'opacity-50 cursor-not-allowed' : ''
-              }`}
+            className={`absolute right-0 top-1/2 transform -translate-y-1/2 md:mr-5 bg-green-500/60 hover:bg-green-400 hover:scale-105 transition-transform text-white py-2 px-4 rounded ${
+              currentTrailerIdx === trailers.length - 1 ? 'opacity-50 cursor-not-allowed' : ''
+            }`}
             disabled={currentTrailerIdx === trailers.length - 1}
             onClick={handleNext}
           >
@@ -153,11 +155,7 @@ const MoviePage = () => {
         </div>
       )}
 
-      {
-        content ?
-          <Details content={content}></Details> :
-          <></>
-      }
+      {content ? <Details content={content}></Details> : <></>}
 
       {/* Sección de Reseñas */}
       <div className="relative w-full bg text-white px-8 py-16">
@@ -176,22 +174,26 @@ const MoviePage = () => {
             Reseñas de Usuarios
           </h2>
           <div className="space-y-6">
-            {apiReviews?.results.reverse().map((review, index) => (
-              <div className=" bg-white/20 backdrop-blur-md p-6 rounded-lg shadow-lg text-white transition duration-300 hover:scale-[1.01]  ">
-                {apiReviews?.results?.length > 0 ? (
-                  <ApiExternalReview key={index} review={apiReviews.results[index]}></ApiExternalReview>
-                ) : (
-                  <div className="text-center">
-                    <h2 className="text-xl font-semibold mb-2">
-                      ¡Sé el primero en dejar una reseña!
-                    </h2>
-                    <p className="text-sm">
-                      Todavía no hay opiniones para este título. ¿Te animás a ser el primero?
-                    </p>
+            {apiReviews?.results && apiReviews.results.length > 0 ? (
+              apiReviews.results
+                .slice()
+                .reverse()
+                .map((review, index) => (
+                  <div
+                    key={index}
+                    className="bg-white/20 backdrop-blur-md p-6 rounded-lg shadow-lg text-white transition duration-300 hover:scale-[1.01]"
+                  >
+                    <ApiExternalReview review={review} />
                   </div>
-                )}
+                ))
+            ) : (
+              <div className="text-center bg-white/20 backdrop-blur-md p-6 rounded-lg shadow-lg text-white">
+                <h2 className="text-xl font-semibold mb-2">¡Sé el primero en dejar una reseña!</h2>
+                <p className="text-sm">
+                  Todavía no hay opiniones para este título. ¿Te animás a ser el primero?
+                </p>
               </div>
-            ))}
+            )}
           </div>
         </div>
       </div>
