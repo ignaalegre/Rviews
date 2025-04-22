@@ -11,6 +11,7 @@ import MovieSlider from '../components/MovieSlider.tsx'
 import ReactPlayer from 'react-player'
 import ApiExternalReview from '../components/ReviewsRelated/ApiExternalReview.tsx'
 import Details from '../components/MoviePage/Details.tsx'
+import FavButton from '../components/FavButton.tsx'
 
 const MoviePage = () => {
   const [content, setContent] = useState<MovieDetailsResponse['content'] | null>(null)
@@ -73,6 +74,7 @@ const MoviePage = () => {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black via-black/60 to-transparent" />
         </div>
+
         {/* Contenido principal tipo hero */}
 
         <div className=" relative z-10 flex flex-col  lg:flex-row md:ml-32 items-center justify-center gap-32 min-h-[91vh] px-4 lg:px-8 max-w-full mx-auto text-white py-8 lg:py-0 space-y-4 lg:space-y-0 scrollbar-hide">
@@ -82,6 +84,7 @@ const MoviePage = () => {
               alt="Poster de película"
               className="w-[200px] md:w-[300px] rounded-lg shadow-lg border-gray-900/55 border-r-4 hover:scale-[1.02] transition-transform duration-300 hover:shadow-2xl hover:translate-y-1"
             />
+
             {content?.homepage && (
               <a
                 href={content.homepage}
@@ -95,15 +98,21 @@ const MoviePage = () => {
           </div>
 
           {/* Título y descripción */}
-          <div className=" max-w-xl text-center  md:text-left bg-black/10 p-6  rounded-lg shadow-lg hover:scale-[1.02] transition-transform duration-300 hover:shadow-2xl">
-            <div className="flex w-full items-center flex-row justify-between md:justify-start gap-4 mb-4">
+          <div className=" max-w-xl text-center items-center md:text-left bg-black/10 p-6  rounded-lg shadow-lg hover:scale-[1.02] transition-transform duration-300 hover:shadow-2xl">
+            <div className="flex w-full items-center flex-row justify-between  gap-4 mb-4 p-4">
               <h1 className="text-4xl md:text-6xl font-bold">{content?.title}</h1>
-              {content?.vote_average && (
+
+              {content && id && (
+                <FavButton show_id={id} title={content?.title} contentType="movie" />
+              )}
+            </div>
+            {content?.vote_average && (
+              <div className="flex justify-center">
                 <div className="aspect-square w-16 h-16 bg-orange-500 text-white font-bold  rounded-full flex items-center justify-center text-3xl shadow-lg">
                   {Math.floor(content.vote_average)}
                 </div>
-              )}
-            </div>
+              </div>
+            )}
             <h4 className=" font-light mt-4 mb-4 text-gray-300">
               {content?.adult === false ? 'PG-13' : '+18'} {' | '}{' '}
               {content?.release_date.slice(0, 4)}

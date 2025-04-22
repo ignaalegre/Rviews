@@ -38,7 +38,7 @@ const Sidebar = () => {
   return (
     <div
       style={{ overflow: 'hidden' }}
-      className={`flex flex-col bg-gray-900 'scrollbar-hide' ${isOpen && 'border-r-4 border-gray-700/85'} `}
+      className={`flex flex-col bg-gray-900 'scrollbar-hide' overflow-hidden ${isOpen && 'border-r-4 border-gray-700/85'} `}
     >
       {isVisible && (
         <motion.div
