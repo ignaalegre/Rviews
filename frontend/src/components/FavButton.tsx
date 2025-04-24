@@ -22,7 +22,7 @@ const FavButton = ({ show_id, title, contentType }: Props) => {
     data.append('title', title)
     data.append('content_type', contentType)
     try {
-      await axios.post(`http://localhost:4001/favourite/addmovie`, data, {
+      await axios.post(`http://localhost:4001/favourite/addMovie`, data, {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
@@ -56,8 +56,10 @@ const FavButton = ({ show_id, title, contentType }: Props) => {
   }
 
   const checkIfFav = () => {
-    const isFavourite = favouritesMovies.some(movie => movie.id.toString() === show_id)
-    setIsFav(isFavourite)
+    fetchFavouritesMovies().then(() => {
+      const isFavourite = favouritesMovies.some(movie => movie.id.toString() === show_id)
+      setIsFav(isFavourite)
+    })
   }
 
   useEffect(() => {
@@ -82,9 +84,8 @@ const FavButton = ({ show_id, title, contentType }: Props) => {
     >
       {isFav ? (
         <FaHeart
-          className={`size-6 hover:scale-105 transition-colors duration-500 ${
-            hasJustFaved ? 'text-red-600' : 'text-white'
-          }`}
+          className={`size-6 hover:scale-105 transition-colors duration-500 ${hasJustFaved ? 'text-red-600' : 'text-white'
+            }`}
         />
       ) : (
         <FaRegHeart className="size-6 hover:scale-105 text-white transition-colors duration-500" />
