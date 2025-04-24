@@ -10,6 +10,7 @@ import MovieSlider from '../components/MovieSlider.tsx'
 import ReactPlayer from 'react-player'
 import ApiExternalReview from '../components/ReviewsRelated/ApiExternalReview.tsx'
 import Details from '../components/TvPage/Details.tsx'
+import FavButton from '../components/FavButton.tsx'
 
 const TvPage = () => {
   const [content, setContent] = useState<TvDetailsResponse['content'] | null>(null)
@@ -76,8 +77,8 @@ const TvPage = () => {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black via-black/60 to-transparent" />
         </div>
-
-        <div className="relative z-10 flex flex-col lg:flex-row md:ml-32 items-center justify-center gap-32 min-h-[91vh] px-4 lg:px-8 max-w-full mx-auto text-white py-8 lg:py-0">
+        {/* Contenido principal tipo hero */}
+        <div className=" relative z-10 flex flex-col  lg:flex-row md:ml-32 items-center justify-center gap-32 min-h-[91vh] px-4 lg:px-8 max-w-full mx-auto text-white py-8 lg:py-0 space-y-4 lg:space-y-0 scrollbar-hide">
           <div className="flex flex-col items-center text-center space-y-4 md:space-y-6">
             <img
               src={`https://image.tmdb.org/t/p/w500/${content?.poster_path}`}
@@ -89,22 +90,25 @@ const TvPage = () => {
                 href={content.homepage}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center bg-blue-500 hover:bg-blue-400 hover:scale-105 transition-transform text-white px-6 py-2 rounded-md font-semibold"
+                className="inline-flex items-center bg-green-500 hover:bg-green-400 hover:scale-105 transition-transform text-white px-6 py-2 rounded-md font-semibold"
               >
                 <MdOutlineInfo className="size-6" /> Ver ahora
               </a>
             )}
           </div>
-
-          <div className="max-w-xl text-center md:text-left bg-black/10 p-6 rounded-lg shadow-lg hover:scale-[1.02] transition-transform duration-300 hover:shadow-2xl">
-            <div className="flex w-full items-center justify-between gap-4 mb-4">
+          {/* Título y descripción */}
+          <div className=" max-w-xl text-center items-center md:text-left bg-black/10 p-6  rounded-lg shadow-lg hover:scale-[1.02] transition-transform duration-300 hover:shadow-2xl">
+            <div className="flex w-full items-center flex-row justify-between  gap-4 mb-4 p-4">
               <h1 className="text-4xl md:text-6xl font-bold">{content?.name}</h1>
-              {content?.vote_average && (
-                <div className="aspect-square w-16 h-16 bg-blue-500 text-white font-bold rounded-full flex items-center justify-center text-3xl shadow-lg">
+              {content && id && <FavButton show_id={id} title={content?.name} contentType="tv" />}
+            </div>
+            {content?.vote_average && (
+              <div className="flex justify-center">
+                <div className="aspect-square w-16 h-16 bg-orange-500 text-white font-bold rounded-full flex items-center justify-center text-3xl shadow-lg">
                   {Math.floor(content.vote_average)}
                 </div>
-              )}
-            </div>
+              </div>
+            )}
             <h4 className="font-light mt-4 mb-4 text-gray-300">
               {content?.first_air_date?.slice(0, 4)} {' | '}
               {content?.number_of_seasons} Temporadas
@@ -128,14 +132,14 @@ const TvPage = () => {
             url={`https://www.youtube.com/watch?v=${trailers[currentTrailerIdx].key}`}
           />
           <button
-            className={`absolute left-0 top-1/2 transform -translate-y-1/2 md:ml-5 bg-blue-500/60 hover:bg-blue-400 hover:scale-105 transition-transform text-white py-2 px-4 rounded ${currentTrailerIdx === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
+            className={`absolute left-0 top-1/2 transform -translate-y-1/2 md:ml-5 bg-green-500/60 hover:bg-green-400 hover:scale-105 transition-transform text-white py-2 px-4 rounded ${currentTrailerIdx === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
             disabled={currentTrailerIdx === 0}
             onClick={handlePrev}
           >
             <ChevronLeft size={24} />
           </button>
           <button
-            className={`absolute right-0 top-1/2 transform -translate-y-1/2 md:mr-5 bg-blue-500/60 hover:bg-blue-400 hover:scale-105 transition-transform text-white py-2 px-4 rounded ${currentTrailerIdx === trailers.length - 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
+            className={`absolute right-0 top-1/2 transform -translate-y-1/2 md:mr-5 bg-green-500/60 hover:bg-green-400 hover:scale-105 transition-transform text-white py-2 px-4 rounded ${currentTrailerIdx === trailers.length - 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
             disabled={currentTrailerIdx === trailers.length - 1}
             onClick={handleNext}
           >

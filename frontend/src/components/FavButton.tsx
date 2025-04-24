@@ -14,7 +14,8 @@ type Props = {
 const FavButton = ({ show_id, title, contentType }: Props) => {
   const [isFav, setIsFav] = useState(false)
   const [hasJustFaved, setHasJustFaved] = useState(false)
-  const { favouritesMovies, fetchFavouritesMovies } = useFavouritesStore()
+  const { favouritesMovies, fetchFavouritesMovies, favouriteSeries, fetchFavouritesSeries } =
+    useFavouritesStore()
 
   const addFavourite = async () => {
     const data = new URLSearchParams()
@@ -22,13 +23,15 @@ const FavButton = ({ show_id, title, contentType }: Props) => {
     data.append('title', title)
     data.append('content_type', contentType)
     try {
-      await axios.post(`http://localhost:4001/favourite/addmovie`, data, {
+      await axios.post(`http://localhost:4001/favourite/add/${contentType}`, data, {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
       })
       fetchFavouritesMovies()
-      Toast.success('Pelicula Agregada a favoritos.')
+      fetchFavouritesSeries()
+
+      Toast.success(`${contentType == 'movie' ? 'Pelicula' : 'Serie'} Agregada a favoritos.`)
     } catch (error) {
       Toast.error('Ocurrio un error.')
     }
@@ -36,12 +39,13 @@ const FavButton = ({ show_id, title, contentType }: Props) => {
 
   const deleteFavourite = async () => {
     try {
-      await axios.delete(`http://localhost:4001/favourite/deleteMovie/${show_id}`) //hardcodeado
-      Toast.success('Pelicula eliminada de favoritos.')
+      await axios.delete(`http://localhost:4001/favourite/delete/${contentType}/${show_id}`)
+      Toast.success(`${contentType == 'movie' ? 'Pelicula' : 'Serie'} eliminada de favoritos.`)
       fetchFavouritesMovies()
+      fetchFavouritesSeries()
     } catch (error) {
-      console.error('Error al eliminar de favoritos:', error)
-      Toast.error('Ocurrio un error.')
+      console.error('Error al eliminar de Favoritos:', error)
+      Toast.error('Ocurrió un error.')
     }
   }
 
@@ -56,7 +60,10 @@ const FavButton = ({ show_id, title, contentType }: Props) => {
   }
 
   const checkIfFav = () => {
-    const isFavourite = favouritesMovies.some(movie => movie.id.toString() === show_id)
+    const isFavourite =
+      contentType == 'movie'
+        ? favouritesMovies.some(movie => movie.id.toString() === show_id)
+        : favouriteSeries.some(tv => tv.id.toString() === show_id)
     setIsFav(isFavourite)
   }
 

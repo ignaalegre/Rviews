@@ -20,7 +20,7 @@ export const useFavouritesStore = create<FavouritesState>((set) => ({
     set({ favouritesMovies: res.data.favouriteMovies })
   },
     fetchFavouritesSeries: async () => {
-        const res = await axios.get('http://localhost:4001/favourite/tv')
+        const res = await axios.get('http://localhost:4001/favourite/tvs')
         set({ favouriteSeries: res.data.favouriteTvShows })
     },
 }))

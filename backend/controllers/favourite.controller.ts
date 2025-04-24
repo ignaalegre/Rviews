@@ -33,7 +33,7 @@ export const deleteFavouriteMovie = (req: Request, res: Response): void => {
 }
 export const getAllFavouritesMovies = (req: Request, res: Response): void => {
     if (!favouriteMovies.length) {
-        res.status(200).json({ message: "No hay películas en favoritos" });
+        res.status(200).json({ message: "No hay películas en favoritos", favouriteMovies });
         return;
     }
     res.status(200).json({ favouriteMovies });
@@ -67,7 +67,7 @@ export const deleteFavouriteTvShow = (req: Request, res: Response): void => {
 }
 export const getAllFavouritesTvShows = (req: Request, res: Response): void => {
     if (!favouriteTvShows.length) {
-        res.status(200).json({ message: "No hay series en favoritos" });
+        res.status(200).json({ message: "No hay series en favoritos", favouriteTvShows });
         return;
     }
     res.status(200).json({ favouriteTvShows });

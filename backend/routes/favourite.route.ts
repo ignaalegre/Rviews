@@ -10,12 +10,12 @@ import {
 
 const router = Router();
 
-router.post('/addMovie', addFavouriteMovie);
-router.delete('/deleteMovie/:id', deleteFavouriteMovie);
+router.post('/add/movie', addFavouriteMovie);
+router.delete('/delete/movie/:id', deleteFavouriteMovie);
 router.get('/movies', getAllFavouritesMovies);
 
-router.post('/addTvShow', addFavouriteTvShow);
-router.delete('/deleteTvShow/:id', deleteFavouriteTvShow);
-router.get('/tv', getAllFavouritesTvShows);
+router.post('/add/tv', addFavouriteTvShow);
+router.delete('/delete/tv/:id', deleteFavouriteTvShow);
+router.get('/tvs', getAllFavouritesTvShows);
 
 export default router;
