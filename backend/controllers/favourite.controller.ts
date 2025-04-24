@@ -4,10 +4,10 @@ import { favouriteMovies, favouriteTvShows } from "../data/memory";
 
 
 export const addFavouriteMovie = (req: Request, res: Response): void => {
-    const {id , title, contentType} = req.body;
+    const { id, title, contentType } = req.body;
 
     const newFavouriteMovie: FavouriteContent = {
-        id : Number(id),
+        id: Number(id),
         title,
         contentType
     }
@@ -22,7 +22,7 @@ export const addFavouriteMovie = (req: Request, res: Response): void => {
 
 
 export const deleteFavouriteMovie = (req: Request, res: Response): void => {
-    const {id} = req.params;
+    const { id } = req.params;
     const index = favouriteMovies.findIndex((movie) => movie.id === Number(id));
     if (index === -1) {
         res.status(200).json({ message: "La película no se encuentra en favoritos" });
@@ -39,10 +39,10 @@ export const getAllFavouritesMovies = (req: Request, res: Response): void => {
     res.status(200).json({ favouriteMovies });
 }
 export const addFavouriteTvShow = (req: Request, res: Response): void => {
-    const {id , title, contentType} = req.body;
+    const { id, title, contentType } = req.body;
 
     const newFavouriteTvShow: FavouriteContent = {
-        id : Number(id),
+        id: Number(id),
         title,
         contentType
     }
@@ -55,7 +55,7 @@ export const addFavouriteTvShow = (req: Request, res: Response): void => {
     res.status(201).json({ message: "Serie agregada a favoritos", favouriteTvShows });
 }
 export const deleteFavouriteTvShow = (req: Request, res: Response): void => {
-    const {id} = req.params;
+    const { id } = req.params;
     const index = favouriteTvShows.findIndex((tvShow) => tvShow.id === Number(id));
 
     if (index === -1) {
