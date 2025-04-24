@@ -4,12 +4,12 @@ import { favouriteMovies, favouriteTvShows } from "../data/memory";
 
 
 export const addFavouriteMovie = (req: Request, res: Response): void => {
-    const { id, title, contentType } = req.body;
+    const { id, title } = req.body;
 
     const newFavouriteMovie: FavouriteContent = {
         id: Number(id),
         title,
-        contentType
+        contentType: "movie"
     }
     const existingMovie = favouriteMovies.find((movie) => movie.id === id);
     if (existingMovie) {
@@ -39,12 +39,12 @@ export const getAllFavouritesMovies = (req: Request, res: Response): void => {
     res.status(200).json({ favouriteMovies });
 }
 export const addFavouriteTvShow = (req: Request, res: Response): void => {
-    const { id, title, contentType } = req.body;
+    const { id, title } = req.body;
 
     const newFavouriteTvShow: FavouriteContent = {
         id: Number(id),
         title,
-        contentType
+        contentType: "tv"
     }
     const existingTvShow = favouriteTvShows.find((tvShow) => tvShow.id === id);
     if (existingTvShow) {
