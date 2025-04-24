@@ -24,7 +24,7 @@ const Modal = ({ isOpen, onClose, review }: ModalProps) => {
       setRating(review.author_details.rating ?? 0)
       setContent(review.content)
     }
-  }, [review])
+  }, [review, isOpen])
   if (!isOpen) return null
 
   const handleSubmit = async (e: FormEvent) => {

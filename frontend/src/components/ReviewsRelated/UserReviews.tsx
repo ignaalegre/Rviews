@@ -76,7 +76,7 @@ const UserReviews = ({ show_id, contentType }: Props) => {
                 {review.author_details?.name || 'Autor desconocido'}
               </h2>
               <h3 className="text-l font-light">
-                @{review?.author_details?.name || 'Sin nombre de usuario'}
+                @{review?.author_details?.username || 'Sin nombre de usuario'}
               </h3>
               <h4 className="text-sm font-extralight">
                 {review?.created_at

@@ -150,7 +150,7 @@ const TvPage = () => {
         <div className="mb-8 p-2 sm:px-10 md:px-32">
           <h2 className="text-xl text-center mt-5">
             No hay trailers disponibles para{' '}
-            <span className="font-bold text-red-600">{content?.name}</span> 😥
+            <span className="font-bold text-green-500">{content?.name}</span> 😥
           </h2>
         </div>
       )}
@@ -195,7 +195,7 @@ const TvPage = () => {
 
       {/* Series Similares */}
       <div className="text-white py-16 px-8 lg:px-20 mb-16 mt-4">
-        <MovieSlider category={{ id: `${id}/similar`, label: 'Similares' }}  contentType="tv"/>
+        <MovieSlider category={{ id: `${id}/similar`, label: 'Similares' }} contentType="tv" />
       </div>
     </div>
   )

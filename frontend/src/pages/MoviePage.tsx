@@ -62,6 +62,13 @@ const MoviePage = () => {
     getTrailers()
   }, [id])
 
+  if (!content)
+    return (
+      <div className="h-screen text-white relative">
+        <div className="absolute top-0 left-0 w-full h-full bg-black/70 flex items-center justify-center -z-10 shimmer" />
+      </div>
+    )
+
   return (
     <div className="flex flex-col w-full h-full overflow-x-hidden">
       <div className="relative w-full h-max scrollbar-hide overflow-y-auto bg-black text-white">
@@ -159,7 +166,7 @@ const MoviePage = () => {
         <div className="mb-8 p-2 sm:px-10 md:px-32">
           <h2 className="text-xl text-center mt-5">
             No hay trailers disponibles para{' '}
-            <span className="font-bold text-red-600">{content?.title}</span> 😥
+            <span className="font-bold text-green-500">{content?.title}</span> 😥
           </h2>
         </div>
       )}
@@ -209,7 +216,7 @@ const MoviePage = () => {
 
       {/* Seccion de MovieSliders "Similares" */}
       <div className="text-white py-16 px-8 lg:px-20 mb-16  mt-4">
-        <MovieSlider category={{ id: `${id}/similar`, label: 'Similares' }} contentType='movie'/>
+        <MovieSlider category={{ id: `${id}/similar`, label: 'Similares' }} contentType="movie" />
       </div>
     </div>
   )
