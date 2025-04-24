@@ -16,9 +16,11 @@ function App() {
       <div className="flex max-w-screen overflow-x-hidden">
         <Sidebar />
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/search/movie/:query" element={<SearchPage />} />
-          <Route path="/search/tv/:query" element={<SearchPage />} />
+          <Route path="/" element={<HomePage contentType="movie"/>} />{/*La home page es de películas por default */}
+          <Route path="/movie" element={<HomePage contentType="movie" />} />
+          <Route path="/tv" element={<HomePage contentType="tv" />} />
+          <Route path="/search/movie/:query" element={<SearchPage contentType="movie"/>} />
+          <Route path="/search/tv/:query" element={<SearchPage contentType="tv"/>} />
           <Route path="/movie/:id" element={<MoviePage />} />
           <Route path="/tv/:id" element={<TvPage />} />
           <Route path="*" element={<NotFound />} />

@@ -195,7 +195,7 @@ const TvPage = () => {
 
       {/* Series Similares */}
       <div className="text-white py-16 px-8 lg:px-20 mb-16 mt-4">
-        <MovieSlider category={{ id: `${id}/similar`, label: 'Similares' }} />
+        <MovieSlider category={{ id: `${id}/similar`, label: 'Similares' }}  contentType="tv"/>
       </div>
     </div>
   )

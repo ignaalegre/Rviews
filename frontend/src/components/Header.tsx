@@ -1,11 +1,9 @@
 import { FaBars } from "react-icons/fa";
-import { useContentStore } from "../store/contentStore";
 import { useSidebarStore } from "../store/sidebarStore";
 import { Link, useNavigate } from "react-router-dom";
 import SearchBar from "./SearchBar";
 
 export default function Header() {
-  const { contentType, setContentType } = useContentStore();
   const { toggleSidebar } = useSidebarStore();
   const navigate = useNavigate();
 
@@ -31,7 +29,7 @@ export default function Header() {
 
         {/* SearchBar visible siempre, pero ocupa todo el ancho en mobile */}
         <div className="w-full">
-          <SearchBar />
+          <SearchBar/>
         </div>
 
         {/* Películas / Series selector */}
@@ -39,13 +37,9 @@ export default function Header() {
           <li>
             <button
               onClick={() => {
-                navigate('/');
-                setContentType('movie');
+                navigate('/movie');
               }}
-              className={`w-full sm:w-auto px-3 py-1 rounded text-center ${contentType === 'movie'
-                ? 'bg-green-500 text-white hover:bg-green-400'
-                : 'text-gray-300 hover:text-white'
-                } transition-all hover:scale-105 hover:shadow-2xl`}
+              className={`w-full sm:w-auto px-3 py-1 rounded text-center text-gray-300 hover:text-white transition-all hover:scale-105 hover:shadow-2xl`}
             >
               Películas
             </button>
@@ -53,13 +47,9 @@ export default function Header() {
           <li>
             <button
               onClick={() => {
-                navigate('/');
-                setContentType('tv');
+                navigate('/tv');
               }}
-              className={`w-full sm:w-auto px-3 py-1 rounded text-center ${contentType === 'tv'
-                ? 'bg-green-500 text-white hover:bg-green-400'
-                : 'text-gray-300 hover:text-white'
-                } transition-all hover:scale-105 hover:shadow-2xl`}
+              className={`w-full sm:w-auto px-3 py-1 rounded text-center text-gray-300 hover:text-white transition-all hover:scale-105 hover:shadow-2xl`}
             >
               Series
             </button>

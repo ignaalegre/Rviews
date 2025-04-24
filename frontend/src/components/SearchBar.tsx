@@ -1,11 +1,11 @@
 import { FormEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useContentStore } from '../store/contentStore'
+import { useContentType } from '../hooks/useContentType' 
 
 export default function SearchBar() {
   const [query, setQuery] = useState("")
   const navigate = useNavigate()
-  const { contentType } = useContentStore()
+  const contentType = useContentType()
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()

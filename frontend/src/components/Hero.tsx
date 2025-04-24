@@ -1,11 +1,9 @@
 import React, { useEffect } from 'react'
 import axios from 'axios'
-import { useContentStore } from '../store/contentStore'
 import useGetTrendingContent from '../hooks/useGetTrending'
 
-const Hero = () => {
-  const { contentType } = useContentStore()
-  const { trendingContent } = useGetTrendingContent()
+const Hero = ({contentType} : {contentType : "movie" | "tv"}) => {
+  const { trendingContent } = useGetTrendingContent(contentType)
   const [contentReview, setContentReview] = React.useState<any>(null)
 
   const getReviews = async () => {

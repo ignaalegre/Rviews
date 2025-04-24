@@ -1,8 +1,6 @@
-import { useContentStore } from '../store/contentStore'
 import { Link } from 'react-router-dom'
 
-const ResultItem = ({ result }: any) => {
-  const { contentType } = useContentStore()
+const ResultItem = ({ result , contentType }: {result : any , contentType : "movie" | "tv" }) => {
   const title = contentType === 'movie' ? result?.title : result?.name
   const imageUrl = result?.poster_path
     ? `https://image.tmdb.org/t/p/w500${result.poster_path}`
