@@ -1,4 +1,4 @@
-import { useState, ChangeEvent, FormEvent, useEffect } from 'react'
+import { useState, FormEvent, useEffect } from 'react'
 import { Review } from '../../../../shared/types'
 import { toast } from 'react-hot-toast'
 import axios from 'axios'

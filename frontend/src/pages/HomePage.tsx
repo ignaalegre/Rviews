@@ -1,14 +1,12 @@
 import Hero from '../components/Hero'
 import MovieSlider from '../components/MovieSlider'
-import Sidebar from '../components/Sidebar'
 import { MOVIE_CATEGORIES, TV_CATEGORIES } from '../utils/constants'
 
-const HomePage = ({contentType} : {contentType : "movie" | "tv"}) => {
-
+const HomePage = ({ contentType }: { contentType: 'movie' | 'tv' }) => {
   return (
     <>
       <div className="flex flex-col w-full overflow-x-hidden">
-        <Hero contentType={contentType}/>
+        <Hero contentType={contentType} />
         <div className="bg-black text-white text-center py-6 px-4">
           <h2 className="text-2xl font-semibold mb-2">
             Mirá las opiniones de los demás y comparte las tuyas
@@ -23,7 +21,9 @@ const HomePage = ({contentType} : {contentType : "movie" | "tv"}) => {
             ? MOVIE_CATEGORIES.map(category => (
                 <MovieSlider key={category.id} category={category} contentType={contentType} />
               ))
-            : TV_CATEGORIES.map(category => <MovieSlider key={category.id} category={category} contentType={contentType}/>)}
+            : TV_CATEGORIES.map(category => (
+                <MovieSlider key={category.id} category={category} contentType={contentType} />
+              ))}
         </div>
       </div>
     </>

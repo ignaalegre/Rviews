@@ -1,11 +1,17 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { SMALL_IMG_BASE_URL } from '../utils/constants'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { Content } from '../../../shared/types'
 
-const MovieSlider = ({ category  , contentType }: { category: { id: string; label: string } , contentType : string }) => {
+const MovieSlider = ({
+  category,
+  contentType,
+}: {
+  category: { id: string; label: string }
+  contentType: string
+}) => {
   const [content, setContent] = useState<Content[]>([])
   const [showArrows, setShowArrows] = useState(false)
 

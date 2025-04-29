@@ -1,6 +1,5 @@
-import React from 'react'
 import { motion } from 'framer-motion'
-import { FaBars, FaStar, FaSteamSquare } from 'react-icons/fa'
+import { FaStar } from 'react-icons/fa'
 import { useState } from 'react'
 import NavItem from './NavItem'
 import { useSidebarStore } from '../store/sidebarStore'
