@@ -8,7 +8,9 @@
     "frontend": "npm run dev -w frontend",
     "start": "concurrently \"npm run backend\" \"npm run frontend\"",
     "test:backend": "npm test -w backend",
-    "test:frontend": "npm test -w frontend"
+    "test:frontend": "npm test -w frontend",
+    "start_prod": "NODE_ENV=production node backend/server.js",
+		"build": "npm install && npm install --prefix frontend && npm run build --prefix frontend"
   },
   "author": "dstamenkovic",
   "license": "ISC",
