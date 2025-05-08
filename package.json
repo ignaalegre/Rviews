@@ -10,7 +10,7 @@
     "test:backend": "npm test -w backend",
     "test:frontend": "npm test -w frontend",
     "start_prod": "NODE_ENV=production node backend/server.js",
-		"build": "NODE_ENV=production npm install --workspace frontend && npm run build --prefix frontend"
+		"build": "npm install && cd frontend && npm install && npm run build"
   },
   "author": "dstamenkovic",
   "license": "ISC",
@@ -22,7 +22,7 @@
     "@types/axios": "^0.14.4",
     "@types/dotenv": "^8.2.3",
     "concurrently": "^8.2.2",
-    "build": "npm install && cd frontend && npm install && npm run build"
+    "vite": "^5.1.6"
   },
   "dependencies": {
     "axios": "^1.8.4",
