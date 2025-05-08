@@ -10,7 +10,7 @@
     "test:backend": "npm test -w backend",
     "test:frontend": "npm test -w frontend",
     "start_prod": "NODE_ENV=production node backend/server.js",
-		"build": "npm install && cd frontend && npm install && npm run build"
+		"build": "NODE_ENV=production npm install && cd frontend && npm install && npm run build"
   },
   "author": "dstamenkovic",
   "license": "ISC",
