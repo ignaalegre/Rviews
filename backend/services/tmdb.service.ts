@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ENV_VARS } from "../config/envVars.ts";
+import { ENV_VARS } from "../config/envVars";
 
 export const fetchFromTMDB = async (url : string) => {
   const options = {

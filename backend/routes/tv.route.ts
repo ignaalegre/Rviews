@@ -6,7 +6,7 @@ import {
   getSimilarTvs,
   getTvsByCategory,
   getTvReviews,
-} from "../controllers/tv.controller.ts";
+} from "../controllers/tv.controller";
 
 const router = express.Router();
 

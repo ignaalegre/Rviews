@@ -6,7 +6,7 @@ import {
     getSimilarMovies,
     getMoviesByCategory,
     getMovieReviews,
-  } from "../controllers/movie.controller.ts";
+  } from "../controllers/movie.controller";
 
 const router = express.Router();
 

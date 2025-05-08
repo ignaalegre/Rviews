@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { fetchFromTMDB } from "../services/tmdb.service.ts";
+import { fetchFromTMDB } from "../services/tmdb.service";
 import axios from "axios";
 
 
