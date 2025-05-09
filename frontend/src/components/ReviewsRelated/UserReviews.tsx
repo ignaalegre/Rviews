@@ -37,9 +37,9 @@ const UserReviews = ({ show_id, contentType }: Props) => {
 
   const handleDelete = async (reviewId: number | undefined) => {
     try {
-      console.log('fetching' + `http://localhost:4001/review/${contentType}/delete/${reviewId}`)
+      console.log('fetching' + `http://localhost:4001/api/review/${contentType}/delete/${reviewId}`)
       const res = await axios.delete(
-        `http://localhost:4001/review/${contentType}/delete/${reviewId}`,
+        `http://localhost:4001/api/review/${contentType}/delete/${reviewId}`,
       )
       if (res.status === 200) {
         if (contentType === 'movie') {

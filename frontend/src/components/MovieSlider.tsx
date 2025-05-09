@@ -18,8 +18,8 @@ const MovieSlider = ({
   const sliderRef = useRef<HTMLDivElement | null>(null)
   useEffect(() => {
     const getContent = async () => {
-      console.log('fetching ' + `http://localhost:4001/${contentType}/${category.id}`)
-      const res = await axios.get(`http://localhost:4001/${contentType}/${category.id}`)
+      console.log('fetching ' + `http://localhost:4001api/${contentType}/${category.id}`)
+      const res = await axios.get(`http://localhost:4001/api/${contentType}/${category.id}`)
 
       setContent(res.data.similar ?? res.data.content)
     }

@@ -4,7 +4,7 @@ import axios from 'axios'
 import ResultItem from '../components/ResultItem'
 import Pagination from '../components/Pagination'
 
-const SearchPage = ({contentType} : {contentType : "movie" | "tv"}) => {
+const SearchPage = ({ contentType }: { contentType: 'movie' | 'tv' }) => {
   const [currentPage, setCurrentPage] = useState<number>(1)
   const { query } = useParams()
   const [loading, setLoading] = useState<boolean>(true)
@@ -14,7 +14,7 @@ const SearchPage = ({contentType} : {contentType : "movie" | "tv"}) => {
   const fetchData = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:4001/search/${contentType}/${query}/${currentPage}`,
+        `http://localhost:4001/api/search/${contentType}/${query}/${currentPage}`,
       )
       const answer = res.data.content
       const data = answer.results
@@ -41,7 +41,9 @@ const SearchPage = ({contentType} : {contentType : "movie" | "tv"}) => {
         <p className="mt-4">Cargando...</p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
-          {results?.map((item, index) => <ResultItem key={index} result={item} contentType={contentType}/>)}
+          {results?.map((item, index) => (
+            <ResultItem key={index} result={item} contentType={contentType} />
+          ))}
         </div>
       )}
       <Pagination

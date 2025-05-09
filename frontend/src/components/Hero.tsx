@@ -2,14 +2,14 @@ import React, { useEffect } from 'react'
 import axios from 'axios'
 import useGetTrendingContent from '../hooks/useGetTrending'
 
-const Hero = ({contentType} : {contentType : "movie" | "tv"}) => {
+const Hero = ({ contentType }: { contentType: 'movie' | 'tv' }) => {
   const { trendingContent } = useGetTrendingContent(contentType)
   const [contentReview, setContentReview] = React.useState<any>(null)
 
   const getReviews = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:4001/${contentType}/${trendingContent?.id}/reviews`,
+        `http://localhost:4001/api/${contentType}/${trendingContent?.id}/reviews`,
       )
       setContentReview(res.data.content)
     } catch (error) {

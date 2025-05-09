@@ -23,7 +23,7 @@ const FavButton = ({ show_id, title, contentType }: Props) => {
     data.append('title', title)
     data.append('content_type', contentType)
     try {
-      await axios.post(`http://localhost:4001/favourite/add/${contentType}`, data, {
+      await axios.post(`http://localhost:4001/api/favourite/add/${contentType}`, data, {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
@@ -39,7 +39,7 @@ const FavButton = ({ show_id, title, contentType }: Props) => {
 
   const deleteFavourite = async () => {
     try {
-      await axios.delete(`http://localhost:4001/favourite/delete/${contentType}/${show_id}`)
+      await axios.delete(`http://localhost:4001/api/favourite/delete/${contentType}/${show_id}`)
       Toast.success(`${contentType == 'movie' ? 'Pelicula' : 'Serie'} eliminada de favoritos.`)
       fetchFavouritesMovies()
       fetchFavouritesSeries()

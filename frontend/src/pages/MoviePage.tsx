@@ -23,7 +23,7 @@ const MoviePage = () => {
 
   const getMovieDetails = async () => {
     try {
-      const res = await axios.get(`http://localhost:4001/movie/${id}/details`)
+      const res = await axios.get(`http://localhost:4001/api/movie/${id}/details`)
       setContent(res.data.content)
     } catch (error) {
       console.log(error)
@@ -31,7 +31,7 @@ const MoviePage = () => {
   }
   const getReviews = async () => {
     try {
-      const res = await axios.get(`http://localhost:4001/movie/${id}/reviews`)
+      const res = await axios.get(`http://localhost:4001/api/movie/${id}/reviews`)
       setApiReviews(res.data.content)
     } catch (error) {
       console.log(error)
@@ -39,7 +39,7 @@ const MoviePage = () => {
   }
   const getTrailers = async () => {
     try {
-      const res = await axios.get(`http://localhost:4001/movie/${id}/trailers`)
+      const res = await axios.get(`http://localhost:4001/api/movie/${id}/trailers`)
       setTrailers(res.data.trailers)
     } catch (error) {
       console.log(error)

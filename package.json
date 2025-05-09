@@ -9,8 +9,8 @@
     "start": "concurrently \"npm run backend\" \"npm run frontend\"",
     "test:backend": "npm test -w backend",
     "test:frontend": "npm test -w frontend",
-    "start_prod": "NODE_ENV=production node backend/server.ts",
-		"build": "npm install && cd backend && npm install && cd ../frontend && npm install && npm run build"
+    "start_prod": "NODE_ENV=production cd backend && npm run start",
+		"build": "npm install && cd backend && npm install && npm run build && cd ../frontend && npm install && npm run build"
   },
   "author": "dstamenkovic",
   "license": "ISC",

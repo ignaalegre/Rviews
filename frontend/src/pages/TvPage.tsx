@@ -22,7 +22,7 @@ const TvPage = () => {
 
   const getTvDetails = async () => {
     try {
-      const res = await axios.get(`http://localhost:4001/tv/${id}/details`)
+      const res = await axios.get(`http://localhost:4001/api/tv/${id}/details`)
       setContent(res.data.content)
     } catch (error) {
       console.log(error)
@@ -31,7 +31,7 @@ const TvPage = () => {
 
   const getReviews = async () => {
     try {
-      const res = await axios.get(`http://localhost:4001/tv/${id}/reviews`)
+      const res = await axios.get(`http://localhost:4001/api/tv/${id}/reviews`)
       setApiReviews(res.data.content)
     } catch (error) {
       console.log(error)
@@ -40,7 +40,7 @@ const TvPage = () => {
 
   const getTrailers = async () => {
     try {
-      const res = await axios.get(`http://localhost:4001/tv/${id}/trailers`)
+      const res = await axios.get(`http://localhost:4001/api/tv/${id}/trailers`)
       setTrailers(res.data.trailers)
     } catch (error) {
       console.log(error)

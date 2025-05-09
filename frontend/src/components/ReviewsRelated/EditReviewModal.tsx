@@ -42,7 +42,7 @@ const Modal = ({ isOpen, onClose, review }: ModalProps) => {
 
     try {
       const res = await axios.patch(
-        `http://localhost:4001/review/${review?.contentType}/update/${review?.id_}`,
+        `http://localhost:4001/api/review/${review?.contentType}/update/${review?.id_}`,
         data,
         {
           headers: {

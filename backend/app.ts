@@ -15,11 +15,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json())
 
 
-app.use('/books', bookRouter)
-app.use('/movie', movieRouter)
-app.use('/tv', tvRouter)
-app.use('/review', reviewRouter)
-app.use('/favourite', favouriteRouter)
-app.use('/search', searchRouter)
+app.use('/api/movie', movieRouter)
+app.use('/api/tv', tvRouter)
+app.use('/api/review', reviewRouter)
+app.use('/api/favourite', favouriteRouter)
+app.use('/api/search', searchRouter)
 
 export default app
