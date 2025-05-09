@@ -6,7 +6,7 @@ const useGetFavourites = () => {
   const [favourites, setFavourites] = useState<FavouriteContent[]>([])
 
   const fetchFavourites = async () => {
-    const res = await axios.get('http://localhost:4001/api/favourite/movies')
+    const res = await axios.get('/api/favourite/movies')
     setFavourites(res.data.favouriteMovies)
     console.log(res.data.favouriteMovies)
   }

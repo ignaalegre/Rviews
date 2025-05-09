@@ -37,10 +37,8 @@ const UserReviews = ({ show_id, contentType }: Props) => {
 
   const handleDelete = async (reviewId: number | undefined) => {
     try {
-      console.log('fetching' + `http://localhost:4001/api/review/${contentType}/delete/${reviewId}`)
-      const res = await axios.delete(
-        `http://localhost:4001/api/review/${contentType}/delete/${reviewId}`,
-      )
+      console.log('fetching' + `/api/review/${contentType}/delete/${reviewId}`)
+      const res = await axios.delete(`/api/review/${contentType}/delete/${reviewId}`)
       if (res.status === 200) {
         if (contentType === 'movie') {
           await fetchMovieReviews()
@@ -55,7 +53,7 @@ const UserReviews = ({ show_id, contentType }: Props) => {
     }
   }
 
-  if (!allUserReviews || allUserReviews.length === 0) {
+  if (!allUserReviews || allUserReviews?.length === 0) {
     return (
       <div className="bg-green-500/20 backdrop-blur-md p-6 rounded-lg shadow-lg text-white">
         <p className="text-sm">Aún no haz hecho ninguna Reseña aquí. Comparte tu Opinion!</p>
@@ -112,7 +110,7 @@ const UserReviews = ({ show_id, contentType }: Props) => {
             </div>
           </div>
           <p className="text-sm">
-            {review?.content.length > 1200
+            {review?.content?.length > 1200
               ? review?.content.slice(0, 1200) + '...'
               : review?.content}
           </p>

@@ -8,9 +8,7 @@ const Hero = ({ contentType }: { contentType: 'movie' | 'tv' }) => {
 
   const getReviews = async () => {
     try {
-      const res = await axios.get(
-        `http://localhost:4001/api/${contentType}/${trendingContent?.id}/reviews`,
-      )
+      const res = await axios.get(`/api/${contentType}/${trendingContent?.id}/reviews`)
       setContentReview(res.data.content)
     } catch (error) {
       console.log(error)
@@ -59,7 +57,7 @@ const Hero = ({ contentType }: { contentType: 'movie' | 'tv' }) => {
 
             <p className="text-lg md:text-xl bg-black/10 p-4 rounded-md transition duration-300 hover:scale-[1.02] hover:bg-white/20 hover:-translate-y-1 hover:shadow-2xl  ">
               {trendingContent?.overview && trendingContent.overview.trim() !== ''
-                ? trendingContent.overview
+                ? trendingContent?.overview
                 : 'No hay descripción disponible para este título.'}
             </p>
 
@@ -77,22 +75,22 @@ const Hero = ({ contentType }: { contentType: 'movie' | 'tv' }) => {
               <>
                 <div className="flex justify-between items-start mb-4">
                   <div>
-                    <h2 className="text-xl font-semibold">{contentReview.results[0].author}</h2>
+                    <h2 className="text-xl font-semibold">{contentReview?.results[0]?.author}</h2>
                     <h3 className="text-l font-light">
-                      @{contentReview.results[0].author_details.username}
+                      @{contentReview?.results[0]?.author_details.username}
                     </h3>
                     <h4 className="text-sm font-extralight">
-                      {contentReview.results[0].created_at.slice(0, 10)}
+                      {contentReview?.results[0]?.created_at.slice(0, 10)}
                     </h4>
                   </div>
                   <span className="text-4xl font-bold bg-orange-500 text-white rounded-full w-16 h-16 flex items-center justify-center">
-                    {contentReview.results[0].author_details.rating}
+                    {contentReview?.results[0]?.author_details.rating}
                   </span>
                 </div>
                 <p className="text-sm ">
-                  {contentReview.results[0].content.length > 1200
-                    ? contentReview.results[0].content.slice(0, 1200) + '...'
-                    : contentReview.results[0].content}
+                  {contentReview?.results[0]?.content?.length > 1200
+                    ? contentReview?.results[0]?.content?.slice(0, 1200) + '...'
+                    : contentReview?.results[0]?.content}
                 </p>
               </>
             ) : (

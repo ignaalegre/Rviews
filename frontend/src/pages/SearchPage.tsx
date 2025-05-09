@@ -13,9 +13,7 @@ const SearchPage = ({ contentType }: { contentType: 'movie' | 'tv' }) => {
 
   const fetchData = async () => {
     try {
-      const res = await axios.get(
-        `http://localhost:4001/api/search/${contentType}/${query}/${currentPage}`,
-      )
+      const res = await axios.get(`/api/search/${contentType}/${query}/${currentPage}`)
       const answer = res.data.content
       const data = answer.results
       setTotalPages(answer.total_pages)

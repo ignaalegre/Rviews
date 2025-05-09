@@ -23,7 +23,7 @@ const MoviePage = () => {
 
   const getMovieDetails = async () => {
     try {
-      const res = await axios.get(`http://localhost:4001/api/movie/${id}/details`)
+      const res = await axios.get(`/api/movie/${id}/details`)
       setContent(res.data.content)
     } catch (error) {
       console.log(error)
@@ -31,7 +31,7 @@ const MoviePage = () => {
   }
   const getReviews = async () => {
     try {
-      const res = await axios.get(`http://localhost:4001/api/movie/${id}/reviews`)
+      const res = await axios.get(`/api/movie/${id}/reviews`)
       setApiReviews(res.data.content)
     } catch (error) {
       console.log(error)
@@ -39,7 +39,7 @@ const MoviePage = () => {
   }
   const getTrailers = async () => {
     try {
-      const res = await axios.get(`http://localhost:4001/api/movie/${id}/trailers`)
+      const res = await axios.get(`/api/movie/${id}/trailers`)
       setTrailers(res.data.trailers)
     } catch (error) {
       console.log(error)
@@ -47,7 +47,7 @@ const MoviePage = () => {
   }
 
   const handleNext = () => {
-    if (currentTrailerIdx < trailers.length - 1) {
+    if (currentTrailerIdx < trailers?.length - 1) {
       setCurrentTrailerIdx(currentTrailerIdx + 1)
     }
   }
@@ -134,7 +134,7 @@ const MoviePage = () => {
         {' '}
         Trailers{' '}
       </h1>
-      {trailers.length > 0 ? (
+      {trailers?.length > 0 ? (
         <div className="relative w-full mb-8 p-2 sm:px-10 md:px-32 lg:max-w-screen-xl items-center justify-center mx-auto">
           <ReactPlayer
             controls={true}
@@ -154,9 +154,9 @@ const MoviePage = () => {
           </button>
           <button
             className={`absolute right-0 top-1/2 transform -translate-y-1/2 md:mr-5 bg-green-500/60 hover:bg-green-400 hover:scale-105 transition-transform text-white py-2 px-4 rounded ${
-              currentTrailerIdx === trailers.length - 1 ? 'opacity-50 cursor-not-allowed' : ''
+              currentTrailerIdx === trailers?.length - 1 ? 'opacity-50 cursor-not-allowed' : ''
             }`}
-            disabled={currentTrailerIdx === trailers.length - 1}
+            disabled={currentTrailerIdx === trailers?.length - 1}
             onClick={handleNext}
           >
             <ChevronRight size={24} />

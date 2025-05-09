@@ -22,7 +22,7 @@ const TvPage = () => {
 
   const getTvDetails = async () => {
     try {
-      const res = await axios.get(`http://localhost:4001/api/tv/${id}/details`)
+      const res = await axios.get(`/api/tv/${id}/details`)
       setContent(res.data.content)
     } catch (error) {
       console.log(error)
@@ -31,7 +31,7 @@ const TvPage = () => {
 
   const getReviews = async () => {
     try {
-      const res = await axios.get(`http://localhost:4001/api/tv/${id}/reviews`)
+      const res = await axios.get(`/api/tv/${id}/reviews`)
       setApiReviews(res.data.content)
     } catch (error) {
       console.log(error)
@@ -40,7 +40,7 @@ const TvPage = () => {
 
   const getTrailers = async () => {
     try {
-      const res = await axios.get(`http://localhost:4001/api/tv/${id}/trailers`)
+      const res = await axios.get(`/api/tv/${id}/trailers`)
       setTrailers(res.data.trailers)
     } catch (error) {
       console.log(error)
@@ -48,7 +48,7 @@ const TvPage = () => {
   }
 
   const handleNext = () => {
-    if (currentTrailerIdx < trailers.length - 1) {
+    if (currentTrailerIdx < trailers?.length - 1) {
       setCurrentTrailerIdx(currentTrailerIdx + 1)
     }
   }
@@ -122,7 +122,7 @@ const TvPage = () => {
       <h1 className="font-extrabold text-xl md:text-2xl lg:text-4xl text-white text-center p-12">
         Trailers
       </h1>
-      {trailers.length > 0 ? (
+      {trailers?.length > 0 ? (
         <div className="relative w-full mb-8 p-2 sm:px-10 md:px-32 lg:max-w-screen-xl mx-auto">
           <ReactPlayer
             controls={true}
@@ -140,7 +140,7 @@ const TvPage = () => {
           </button>
           <button
             className={`absolute right-0 top-1/2 transform -translate-y-1/2 md:mr-5 bg-green-500/60 hover:bg-green-400 hover:scale-105 transition-transform text-white py-2 px-4 rounded ${currentTrailerIdx === trailers.length - 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
-            disabled={currentTrailerIdx === trailers.length - 1}
+            disabled={currentTrailerIdx === trailers?.length - 1}
             onClick={handleNext}
           >
             <ChevronRight size={24} />
@@ -169,7 +169,7 @@ const TvPage = () => {
             Reseñas de Usuarios
           </h2>
           <div className="space-y-6">
-            {apiReviews?.results && apiReviews.results.length > 0 ? (
+            {apiReviews?.results && apiReviews?.results?.length > 0 ? (
               apiReviews.results
                 .slice()
                 .reverse()
