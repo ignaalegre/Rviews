@@ -16,11 +16,9 @@ export const useReviewsStore = create<ReviewsState>((set) => ({
   fetchMovieReviews: async () => {
     const res = await axios.get('/api/review/movie/all')
     set({ moviesReviews: res.data.reviews })
-    console.log(res.data.reviews)
   },
   fetchTvReviews: async () => {
     const res = await axios.get('/api/review/tv/all')
     set({ tvReviews: res.data.reviews })
-    console.log(res.data.reviews)
   },
 }))

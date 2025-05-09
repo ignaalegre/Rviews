@@ -4,9 +4,6 @@ import path from 'path'
 import express from 'express'
 
 const port = ENV_VARS.PORT || 4001
-let env = ENV_VARS.NODE_ENV
-
-env ="production"
 if (ENV_VARS.NODE_ENV == "production") {
   console.log("Production mode")
   const frontendPath = path.resolve(process.cwd(), "../frontend", "dist");

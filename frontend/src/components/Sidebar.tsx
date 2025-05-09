@@ -19,8 +19,6 @@ const Sidebar = () => {
     fetchFavouritesSeries()
     fetchMovieReviews()
     fetchTvReviews()
-    console.log(moviesReviews)
-    console.log(tvReviews)
   }, [])
 
   useEffect(() => {

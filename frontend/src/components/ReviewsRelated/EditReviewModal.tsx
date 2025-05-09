@@ -50,7 +50,7 @@ const Modal = ({ isOpen, onClose, review }: ModalProps) => {
           },
         },
       )
-      console.log('Reseña enviada:', res.data)
+
       setAuthor('')
       setUsername('')
       setRating(0)

@@ -8,7 +8,6 @@ const useGetFavourites = () => {
   const fetchFavourites = async () => {
     const res = await axios.get('/api/favourite/movies')
     setFavourites(res.data.favouriteMovies)
-    console.log(res.data.favouriteMovies)
   }
 
   useEffect(() => {

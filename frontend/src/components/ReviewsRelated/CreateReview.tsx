@@ -38,7 +38,6 @@ const CreateReview = ({ show_id, title, contentType }: Props) => {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
       })
-      console.log('Reseña enviada:', res.data)
       setAuthor('')
       setUsername('')
       setRating(0)
