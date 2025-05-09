@@ -33,7 +33,7 @@ const CreateReview = ({ show_id, title, contentType }: Props) => {
     data.append('content', content)
 
     try {
-      const res = await axios.post(`/api/review/${contentType}/create`, data, {
+      await axios.post(`/api/review/${contentType}/create`, data, {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },

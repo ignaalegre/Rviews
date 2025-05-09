@@ -41,15 +41,11 @@ const Modal = ({ isOpen, onClose, review }: ModalProps) => {
     data.append('content', content)
 
     try {
-      const res = await axios.patch(
-        `/api/review/${review?.contentType}/update/${review?.id_}`,
-        data,
-        {
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
+      await axios.patch(`/api/review/${review?.contentType}/update/${review?.id_}`, data, {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
         },
-      )
+      })
 
       setAuthor('')
       setUsername('')
