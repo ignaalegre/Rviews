@@ -1,6 +1,5 @@
 import express from 'express'
 import cors from 'cors'
-import bookRouter from './routes/book.route'
 import movieRouter from './routes/movie.route'
 import tvRouter from './routes/tv.route'
 import reviewRouter from './routes/review.route'

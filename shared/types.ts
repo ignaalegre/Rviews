@@ -1,7 +1,5 @@
-export type Book = {
-  id: string
-  title: string
-}
+
+
 
 export interface Content {
   id: number
