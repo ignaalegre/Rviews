@@ -1,11 +1,11 @@
 import { FaBars } from "react-icons/fa";
 import { useSidebarStore } from "../store/sidebarStore";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
+import Selector from "./Selector";
 
 export default function Header() {
   const { toggleSidebar } = useSidebarStore();
-  const navigate = useNavigate();
 
   return (
     <header className="bg-gray-900 text-white px-4 py-3 shadow-md">
@@ -29,32 +29,11 @@ export default function Header() {
 
         {/* SearchBar visible siempre, pero ocupa todo el ancho en mobile */}
         <div className="w-full">
-          <SearchBar/>
+          <SearchBar />
         </div>
 
         {/* Películas / Series selector */}
-        <ul className="flex flex-col sm:flex-row gap-2 sm:gap-6 w-full sm:w-auto">
-          <li>
-            <button
-              onClick={() => {
-                navigate('/movie');
-              }}
-              className={`w-full sm:w-auto px-3 py-1 rounded text-center text-gray-300 hover:text-white transition-all hover:scale-105 hover:shadow-2xl`}
-            >
-              Películas
-            </button>
-          </li>
-          <li>
-            <button
-              onClick={() => {
-                navigate('/tv');
-              }}
-              className={`w-full sm:w-auto px-3 py-1 rounded text-center text-gray-300 hover:text-white transition-all hover:scale-105 hover:shadow-2xl`}
-            >
-              Series
-            </button>
-          </li>
-        </ul>
+        <Selector />
       </nav>
     </header>
   );

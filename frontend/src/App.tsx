@@ -1,6 +1,6 @@
 import Footer from './components/Footer'
 import MoviePage from './pages/MoviePage'
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import Header from './components/Header'
 import HomePage from './pages/HomePage'
 import SearchPage from './pages/SearchPage'
@@ -16,11 +16,11 @@ function App() {
       <div className="flex max-w-screen overflow-x-hidden">
         <Sidebar />
         <Routes>
-          <Route path="/" element={<HomePage contentType="movie"/>} />{/*La home page es de películas por default */}
+          <Route path="/" element={<Navigate to="/movie" replace />} />{/*La home page es de películas por default */}
           <Route path="/movie" element={<HomePage contentType="movie" />} />
           <Route path="/tv" element={<HomePage contentType="tv" />} />
-          <Route path="/search/movie/:query" element={<SearchPage contentType="movie"/>} />
-          <Route path="/search/tv/:query" element={<SearchPage contentType="tv"/>} />
+          <Route path="/search/movie/:query" element={<SearchPage contentType="movie" />} />
+          <Route path="/search/tv/:query" element={<SearchPage contentType="tv" />} />
           <Route path="/movie/:id" element={<MoviePage />} />
           <Route path="/tv/:id" element={<TvPage />} />
           <Route path="*" element={<NotFound />} />
