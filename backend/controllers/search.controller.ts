@@ -7,7 +7,7 @@ export const searchMovie = async (req: Request, res: Response): Promise<void> =>
     const page = req.params.page ? parseInt(req.params.page, 10) : 1;
     try {
         const data = await fetchFromTMDB(
-            `https://api.themoviedb.org/3/search/movie?query=${title}&page=${page}`
+            `https://api.themoviedb.org/3/search/movie?query=${title}&page=${page}&language=es-ES`
         );
         res.status(200).json({ success: true, content: data });
     } catch (error) {
@@ -27,7 +27,7 @@ export const searchTv = async (req: Request, res: Response): Promise<void> => {
 
     try {
         const data = await fetchFromTMDB(
-            `https://api.themoviedb.org/3/search/tv?query=${title}&page=${page}`
+            `https://api.themoviedb.org/3/search/tv?query=${title}&page=${page}&language=es-ES`
         );
         res.status(200).json({ success: true, content: data });
     } catch (error) {
