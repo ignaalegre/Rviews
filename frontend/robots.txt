@@ -1,2 +1,8 @@
 User-agent: *
-Disallow: /search
+Disallow: /search/
+Disallow: /search/movie/
+Disallow: /search/tv/
+Disallow: /404
+Disallow: /notfound
+Allow: /movie/
+Allow: /tv/
