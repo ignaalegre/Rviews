@@ -1,4 +1,3 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/aZzykbwC)
 # Proyecto 1 - Desarrollo de Aplicación Web con React y API Propia
 
 ### 📌 Introducción
@@ -35,19 +34,6 @@ La aplicación debe contar con un diseño atractivo y una interfaz intuitiva par
 
 ---
 
-### 💡 Ejemplos de aplicaciones posibles
-
-Cada comisión podrá elegir el enfoque de su aplicación, siempre respetando los requisitos y restricciones. Algunas opciones recomendadas:
-
-- **Gestor de tareas** → Aplicación para agregar, editar y eliminar tareas.
-- **Mini blog** → Permitir crear y visualizar publicaciones con comentarios.
-- **Agenda de eventos** → Manejo de eventos con fechas y descripciones.
-- **Catálogo de productos ficticio** → Mostrar productos con detalles y filtros de búsqueda.
-
-Cada comisión puede proponer otras ideas siempre que cumplan con la estructura general del proyecto.
-
----
-
 ### 📝 Operatoria
 
 ### **Entregables:**
@@ -69,7 +55,7 @@ Cada comisión puede proponer otras ideas siempre que cumplan con la estructura 
 
 - La fecha de entrega del proyecto es el día Jueves 15 de Mayo a las 23:59 hs.
 - Se debe subir al branch main todos los cambios realizados para el desarrollo del proyecto.
-- Se recomienda trabajar en uno o mas branchs de main y mezclar los cambios de manera gradual o todos juntos al final. 
+- Se recomienda trabajar en uno o mas branchs de main y mezclar los cambios de manera gradual o todos juntos al final.
 - Este archivo debe incluir un link al deploy funcional de Render [aquí]().
 - Además, se puede incluir cualquier nota que sea requerida al final de este archivo.
 - El no cumplimiento de alguno de los puntos anteriores invalida la entrega por completo del proyecto.
